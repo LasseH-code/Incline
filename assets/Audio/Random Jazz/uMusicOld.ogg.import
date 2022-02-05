@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/uMusicOld.ogg-31a41c6df8fdef6d5a194503a8d7095d.oggstr"
+
+[deps]
+
+source_file="res://assets/Audio/Random Jazz/uMusicOld.ogg"
+dest_files=[ "res://.import/uMusicOld.ogg-31a41c6df8fdef6d5a194503a8d7095d.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

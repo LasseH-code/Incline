@@ -1,0 +1,64 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/Logo/ArtBoard5 alpha@2x.png" type="Texture" id=1]
+[ext_resource path="res://addons/anima/core/tween.gd" type="Script" id=2]
+[ext_resource path="res://scripts/_sc/splashs/Inertia Splash.gd" type="Script" id=3]
+[ext_resource path="res://assets/Logo/Incline Dark Alpha.png" type="Texture" id=4]
+
+[node name="Inertia Splash" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Control" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+anchor_right = 25.58
+anchor_bottom = 14.932
+margin_left = -582.0
+margin_top = -361.0
+margin_right = 870.8
+margin_bottom = 583.72
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Inertia" type="Sprite" parent="."]
+position = Vector2( 511.194, 299 )
+scale = Vector2( 0.0900552, 0.0900552 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 511, 303 )
+current = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="AnimaTween" type="Tween" parent="."]
+script = ExtResource( 2 )
+
+[node name="Incline" type="Sprite" parent="."]
+position = Vector2( 511, 303 )
+scale = Vector2( 0.113927, 0.113927 )
+texture = ExtResource( 4 )
+
+[node name="Incline2" type="Position2D" parent="."]
+position = Vector2( -330, 3419 )
+rotation = -1.5708
+scale = Vector2( 2.89943, 2.89943 )
+__meta__ = {
+"_edit_lock_": true,
+"_gizmo_extents_": 1000.0
+}
+
+[connection signal="tween_all_completed" from="AnimaTween" to="." method="_on_AnimaTween_tween_all_completed"]
