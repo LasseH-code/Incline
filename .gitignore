@@ -13,3 +13,7 @@ export_presets.cfg
 .mono/
 data_*/
 mono_crash.*.json
+
+# Others
+assets\HDR\HDRI-Universe.hdr
+assets\HDR\HDRI-Universe.hdr.import
