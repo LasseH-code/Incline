@@ -11,6 +11,9 @@ size = Vector3( 0.5, 0.5, 0.5 )
 
 [node name="Pickup" type="Spatial"]
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="Pickuparea" type="Area" parent="."]
 
@@ -25,7 +28,11 @@ material/0 = null
 script = ExtResource( 2 )
 
 [node name="AnimEnd" type="Position3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.20244, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.828897, 0 )
+
+[node name="Payload" type="Spatial" parent="."]
+
+[node name="NULL" type="Spatial" parent="Payload"]
 
 [connection signal="body_entered" from="Pickuparea" to="." method="_on_Pickuparea_body_entered"]
 [connection signal="tween_all_completed" from="AnimaTween" to="." method="_on_AnimaTween_tween_all_completed"]

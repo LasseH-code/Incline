@@ -3,6 +3,7 @@ extends Spatial
 onready var mesh = $Mesh
 onready var anima = Anima.begin(mesh, "move")
 onready var anim_end = $AnimEnd
+onready var payload = $Payload
 
 export(String) var type = "NULL"
 export(bool) var do_spin = true
@@ -12,13 +13,24 @@ export(float) var animation_time = 2.0
 
 var animation_done = false
 
-func create_move_anim():
+onready var seperatePayloads = get_payloads()
+
+func get_payloads():
+	var p = payload.get_children()
+	if p.size() <= 0:
+		var temp = Spatial.new()
+		temp.name == "NULL"
+		payload.add_child(temp)
+		p = payload.get_children()
+	return p
+
+func create_move_anim() -> void:
 	anima.then({node = mesh, property = "translation", from = mesh.translation, to = anim_end.translation, duration = animation_time, easing = Anima.EASING.EASE_IN_OUT})
 	anima.then({node = mesh, property = "translation", from = anim_end.translation, to = mesh.translation, duration = animation_time, easing = Anima.EASING.EASE_IN_OUT})
 
-func _ready():
-	create_move_anim()
+func _ready() -> void:
 	if animated:
+		create_move_anim()
 		_timer_callback()
 		var timer = Timer.new()
 		timer.set_one_shot(false)
@@ -27,7 +39,7 @@ func _ready():
 		timer.autostart = true
 		add_child(timer)
 
-func _timer_callback():
+func _timer_callback() -> void:
 	anima.play()
 
 func spin(delta) -> void:
@@ -38,7 +50,8 @@ func _process(delta) -> void:
 		spin(delta)
 
 
-func _on_Pickuparea_body_entered(body):
+func _on_Pickuparea_body_entered(body) -> void:
 	if body.is_in_group("Playable"):
-		body.update_items(type)
+		#seperatePayloads = get_payloads()
+		body.recieve_item(type, seperatePayloads)
 		queue_free()
