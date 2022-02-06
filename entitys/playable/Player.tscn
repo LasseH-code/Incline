@@ -7,7 +7,7 @@
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.643388
 
-[node name="Player" type="KinematicBody"]
+[node name="Player" type="KinematicBody" groups=["Playable"]]
 script = ExtResource( 1 )
 __meta__ = {
 "_editor_description_": ""

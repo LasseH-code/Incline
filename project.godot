@@ -851,7 +851,6 @@ config/icon="res://icon.png"
 [autoload]
 
 Anima="*res://addons/anima/core/anima.gd"
-VolumetricServer="*res://addons/silicon.vfx.volumetrics/volumetric_server.gd"
 
 [display]
 
@@ -861,7 +860,7 @@ window/stretch/mode="2d"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/anima/plugin.cfg", "res://addons/gdUnit3/plugin.cfg", "res://addons/mixing-desk/plugin.cfg", "res://addons/silicon.vfx.volumetrics/plugin.cfg", "res://addons/vpainter/plugin.cfg", "res://addons/waterways/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/anima/plugin.cfg", "res://addons/gdUnit3/plugin.cfg", "res://addons/mixing-desk/plugin.cfg", "res://addons/vpainter/plugin.cfg", "res://addons/waterways/plugin.cfg" )
 
 [input]
 

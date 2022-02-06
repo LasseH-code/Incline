@@ -47,6 +47,9 @@ var cam_rot = 0
 var action_flags = [false, false, false, false] # up | down | left | right
 var primitive_action_flags = [false, false]
 
+func update_items(type:String) -> void:
+	print("Recieved " + type + " item!")
+
 func create_abrupt_turn_timer() -> void:
 	abrupt_turn_timer = Timer.new()
 	abrupt_turn_timer.name = "att"
