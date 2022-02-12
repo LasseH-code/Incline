@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scripts/entitys/playable/Player.gd" type="Script" id=1]
 [ext_resource path="res://scripts/entitys/playable/CameraHolder.gd" type="Script" id=2]
 [ext_resource path="res://scripts/entitys/playable/DebugUI.gd" type="Script" id=3]
 [ext_resource path="res://scripts/entitys/playable/Items.gd" type="Script" id=4]
+[ext_resource path="res://addons/kenney_prototypes/assets/colors/light/scenes/prototype_light_03.tscn" type="PackedScene" id=5]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.643388
@@ -36,6 +37,7 @@ current = true
 fov = 90.0
 
 [node name="Debug UI" type="Control" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 3 )
@@ -65,5 +67,15 @@ text = "N/A UNITS"
 
 [node name="Items" type="Node" parent="."]
 script = ExtResource( 4 )
+
+[node name="Hands" type="CanvasLayer" parent="."]
+
+[node name="Hands" type="Spatial" parent="Hands"]
+
+[node name="PrototypeCube" parent="Hands/Hands" instance=ExtResource( 5 )]
+transform = Transform( -0.059, 0, -6.93071e-08, 0, 0.079, 0, 8.90875e-09, 0, -0.459, 0.720473, 0.0943702, -0.435425 )
+
+[node name="PrototypeCube2" parent="Hands/Hands" instance=ExtResource( 5 )]
+transform = Transform( -0.028, 3.12908e-09, -1.50465e-08, 0, 0.0157022, 0.131511, 4.22788e-09, 0.0207229, -0.0996487, 0.685282, -0.108, -0.564 )
 
 [connection signal="debug_info" from="." to="Debug UI" method="_on_Player_debug_info"]
