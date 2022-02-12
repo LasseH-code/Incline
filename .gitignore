@@ -15,5 +15,4 @@ data_*/
 mono_crash.*.json
 
 # Others
-assets\HDR\HDRI-Universe.hdr
-assets\HDR\HDRI-Universe.hdr.import
+assets/HDR/*
