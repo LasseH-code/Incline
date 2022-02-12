@@ -18,7 +18,8 @@ func make_splash_fade_out_anim() -> void:
 	splash_fade_out.then({node = $CanvasLayer2/Splash/SplashFade, animation = "fade_out", duration = 2.0, delay = 0.5})
 
 func _on_Button_pressed() -> void:
-	get_tree().change_scene("res://_sc/tests/PlayerTest.tscn")
+	var sc = load("res://_sc/tests/PlayerTest.tscn")
+	get_tree().change_scene_to(sc)
 
 func _on_Options_toggled(button_pressed) -> void:
 	if button_pressed:

@@ -63,7 +63,7 @@ margin_right = 234.0
 margin_bottom = 32.0
 text = "N/A UNITS"
 
-[node name="Items" type="Spatial" parent="."]
+[node name="Items" type="Node" parent="."]
 script = ExtResource( 4 )
 
 [connection signal="debug_info" from="." to="Debug UI" method="_on_Player_debug_info"]

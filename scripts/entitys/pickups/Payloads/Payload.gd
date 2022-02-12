@@ -2,7 +2,8 @@ extends Node
 
 export(PayloadTypes.loadType) var pt = PayloadTypes.loadType.NULL
 export(PayloadTypes.modType) var mt = PayloadTypes.modType.NULL
-export(Script) var action
+export(Script) var actionSc
 
-func _ready():
-	pass
+
+func action(player) -> void:
+	actionSc.action(player)

@@ -58,6 +58,7 @@ func recieve_item(type:String, payloads) -> void:
 	else:
 		items.items[type] += 1
 	items.print_items()
+	items.refresh_payloads()
 
 func create_abrupt_turn_timer() -> void:
 	abrupt_turn_timer = Timer.new()
@@ -81,23 +82,23 @@ func take_dir_input() -> void:
 	if Input.is_action_pressed("move_fw"):
 		action_flags[0] = true
 		dir -= cam_holder_basis.z
-		dir = items.forward_m(dir)
+		#dir = items.forwards_m(dir)
 	if Input.is_action_pressed("move_bw"):
 		action_flags[1] = true
 		dir += cam_holder_basis.z 
-		dir = items.backwards_m(dir)
+		#dir = items.backwards_m(dir)
 	if Input.is_action_pressed("move_le"):
 		action_flags[2] = true
 		dir -= cam_holder_basis.x
-		dir = items.left_m(dir)
+		#dir = items.left_m(dir)
 	if Input.is_action_pressed("move_ri"):
 		action_flags[3] = true
 		dir += cam_holder_basis.x 
-		dir = items.right_m(dir)
+		#dir = items.right_m(dir)
 	
 	if Input.is_action_just_pressed("move_jump"):
 		dir.y = 1 
-		dir = items.jump_m(dir)
+		#dir = items.jump_m(dir)
 	
 	internal_accel = acceleration
 	internal_max_speed = max_speed
@@ -114,7 +115,7 @@ func take_dir_input() -> void:
 			dir.y = (dir.y/dir.y) * sneak_jump
 		elif sneak_decrease_jump:
 			dir.y *= sneak_jump_multiplier
-		dir = items.sneak_m(dir)
+		#dir = items.sneak_m(dir)
 	elif Input.is_action_pressed("move_sprint"):
 		dir *= Vector3(sprint_multiplier, 1, sprint_multiplier)
 		if sprint_increase_max_speed:
@@ -124,9 +125,9 @@ func take_dir_input() -> void:
 		if set_sprint_accel:
 			internal_accel = sprint_accel
 		#dir *= Vector3(sprint_multiplier, 1, sprint_multiplier)
-		dir = items.sprint_m(dir)
+		#dir = items.sprint_m(dir)
 	
-	dir = items.dir_m(dir)
+	#dir = items.dir_m(dir)
 
 func calc_vel(delta) -> void:
 	#vel = vel.normalized()
@@ -167,9 +168,9 @@ func calc_vel(delta) -> void:
 	# ------------------------
 	
 	vel.y -= gravity * delta
-	if (is_on_floor() && dir.y > 0) or items.jump_anyways():
+	if (is_on_floor() && dir.y > 0): #or items.jump_anyways():
 		vel.y = (dir.y*jump_height) * delta
-	vel = items.vel_m(dir)
+	#vel = items.vel_m(dir)
 
 func _input(event):
 	if event is InputEventMouseMotion:

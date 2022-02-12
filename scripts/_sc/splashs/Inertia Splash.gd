@@ -3,6 +3,12 @@ extends Node2D
 var inout_anim := Anima.begin(self, "inout")
 var zoomy_fuck := Anima.begin(self, "zoomy_fuck")
 
+var mm = preload("res://_sc/menus/MainMenu.tscn")
+
+func _input(event) -> void:
+	if event is InputEventKey and event.is_pressed():
+		change_to_main_menu()
+
 func _ready():
 	$Inertia.modulate.a = 0.0
 	$Incline.modulate.a = 0.0
@@ -19,8 +25,11 @@ func _ready():
 	add_child(timer)
 	
 
+func change_to_main_menu():
+	get_tree().change_scene_to(mm)
+
 func _timer_callback():
-	get_tree().change_scene("res://_sc/menus/MainMenu.tscn")
+	change_to_main_menu()
 
 func make_zoomy_anim():
 	zoomy_fuck.then({node = $Incline, animation = "fade_in", duration = 1.0})
