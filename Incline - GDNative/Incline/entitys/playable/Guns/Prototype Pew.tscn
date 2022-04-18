@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://entitys/playable/ViewModel.tscn" type="PackedScene" id=1]
+[ext_resource path="res://addons/kenney_prototypes/assets/colors/light/materials/material_003.tres" type="Material" id=2]
+[ext_resource path="res://assets/Ui/HUD/rotated_2_w.png" type="Texture" id=3]
+[ext_resource path="res://entitys/Bullets/BulletSharp.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/Audio/Guns/Laser_Shoot13.wav" type="AudioStream" id=5]
+
+[sub_resource type="ArrayMesh" id=1]
+resource_name = "cube_Cube001"
+surfaces/0 = {
+"aabb": AABB( 0, 0, 0, 2, 2, 2.00001 ),
+"array_data": PoolByteArray( 0, 0, 0, 0, 0, 64, 0, 60, 1, 128, 0, 0, 0, 0, 255, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 0, 0, 0, 64, 0, 60, 0, 0, 1, 128, 255, 127, 255, 127, 0, 0, 128, 179, 0, 0, 128, 63, 0, 0, 0, 0, 0, 64, 0, 60, 0, 0, 0, 0, 255, 127, 255, 63, 0, 0, 128, 179, 0, 0, 128, 63, 0, 0, 0, 64, 0, 64, 0, 60, 1, 128, 0, 0, 0, 0, 255, 63, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 64, 0, 64, 0, 60, 0, 0, 0, 0, 255, 127, 255, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 64, 0, 64, 0, 60, 0, 0, 255, 127, 255, 127, 255, 127, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 60, 1, 128, 0, 0, 0, 0, 255, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 60, 0, 0, 1, 128, 255, 127, 255, 127, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 60, 255, 127, 255, 127, 1, 128, 255, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 0, 64, 0, 0, 0, 60, 1, 128, 0, 0, 0, 0, 255, 63, 0, 0, 128, 179, 0, 0, 0, 0, 0, 0, 0, 64, 0, 0, 0, 60, 255, 127, 255, 127, 1, 128, 255, 63, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 64, 0, 0, 0, 60, 0, 0, 255, 127, 255, 127, 255, 127, 0, 0, 128, 63, 0, 0, 0, 0, 0, 64, 0, 0, 0, 64, 0, 60, 0, 0, 1, 128, 255, 127, 255, 127, 0, 0, 0, 0, 0, 0, 0, 0, 0, 64, 0, 0, 0, 64, 0, 60, 0, 0, 0, 0, 255, 127, 255, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 64, 0, 0, 0, 64, 0, 60, 255, 127, 0, 0, 255, 127, 255, 127, 0, 0, 128, 179, 0, 0, 128, 63, 0, 64, 0, 64, 0, 64, 0, 60, 0, 0, 0, 0, 255, 127, 255, 63, 0, 0, 128, 63, 0, 0, 0, 0, 0, 64, 0, 64, 0, 64, 0, 60, 0, 0, 255, 127, 255, 127, 255, 127, 0, 0, 128, 179, 0, 0, 128, 63, 0, 64, 0, 64, 0, 64, 0, 60, 255, 127, 0, 0, 255, 127, 255, 127, 0, 0, 0, 0, 0, 0, 0, 0, 0, 64, 0, 0, 0, 0, 0, 60, 0, 0, 1, 128, 255, 127, 255, 127, 0, 0, 128, 63, 0, 0, 0, 0, 0, 64, 0, 0, 0, 0, 0, 60, 255, 127, 255, 127, 1, 128, 255, 63, 0, 0, 128, 179, 0, 0, 128, 63, 0, 64, 0, 0, 0, 0, 0, 60, 255, 127, 0, 0, 255, 127, 255, 127, 0, 0, 128, 63, 0, 0, 128, 63, 0, 64, 0, 64, 0, 0, 0, 60, 255, 127, 255, 127, 1, 128, 255, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 64, 0, 64, 0, 0, 0, 60, 0, 0, 255, 127, 255, 127, 255, 127, 0, 0, 128, 63, 0, 0, 128, 63, 0, 64, 0, 64, 0, 0, 0, 60, 255, 127, 0, 0, 255, 127, 255, 127, 0, 0, 128, 63, 0, 0, 0, 0 ),
+"array_index_data": PoolByteArray( 0, 0, 9, 0, 3, 0, 0, 0, 6, 0, 9, 0, 8, 0, 21, 0, 10, 0, 8, 0, 19, 0, 21, 0, 20, 0, 17, 0, 23, 0, 20, 0, 14, 0, 17, 0, 13, 0, 4, 0, 15, 0, 13, 0, 2, 0, 4, 0, 7, 0, 12, 0, 18, 0, 7, 0, 1, 0, 12, 0, 22, 0, 5, 0, 11, 0, 22, 0, 16, 0, 5, 0 ),
+"blend_shape_data": [  ],
+"format": 2097943,
+"index_count": 36,
+"primitive": 4,
+"skeleton_aabb": [  ],
+"vertex_count": 24
+}
+
+[node name="Prototype Pew" instance=ExtResource( 1 )]
+bullet = ExtResource( 4 )
+shooting_speed = 50.0
+
+[node name="PrototypeCube" type="Spatial" parent="MeshHolder" index="0"]
+transform = Transform( -0.059, 0, -1.49561e-07, 0, 0.079, 0, 1.92247e-08, 0, -0.459, 0.73, 0.171213, -0.30264 )
+
+[node name="Cube" type="MeshInstance" parent="MeshHolder/PrototypeCube" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, -3.55271e-15, 0, 1, 0, 0, 0 )
+layers = 2
+use_in_baked_light = true
+mesh = SubResource( 1 )
+material/0 = ExtResource( 2 )
+
+[node name="PrototypeCube2" type="Spatial" parent="MeshHolder" index="1"]
+transform = Transform( -0.028, 6.7524e-09, -3.24697e-08, 0, 0.0157022, 0.131511, 9.12357e-09, 0.0207229, -0.0996487, 0.737, -0.028787, -0.55464 )
+
+[node name="Cube" type="MeshInstance" parent="MeshHolder/PrototypeCube2" index="0"]
+transform = Transform( 1, 5.68434e-14, -2.27374e-13, 0, 1, 0, -3.55271e-15, 0, 1, 0.979179, 0, 0 )
+layers = 2
+use_in_baked_light = true
+mesh = SubResource( 1 )
+material/0 = ExtResource( 2 )
+
+[node name="BarrelEnd" parent="." index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.670959, 0.272951, -1.22042 )
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer" parent="Audio/Shot" index="0"]
+stream = ExtResource( 5 )
+volume_db = -14.77
+
+[node name="Texture" parent="Crosshair" index="0"]
+texture = ExtResource( 3 )

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/betagunsound1_1.wav-e8fbb378e6e84b3ae0418385fd0dc93e.sample"
+
+[deps]
+
+source_file="res://assets/Audio/Guns/betagunsound1_1.wav"
+dest_files=[ "res://.import/betagunsound1_1.wav-e8fbb378e6e84b3ae0418385fd0dc93e.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

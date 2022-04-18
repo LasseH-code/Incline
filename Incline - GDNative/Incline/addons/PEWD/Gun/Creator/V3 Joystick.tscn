@@ -1,0 +1,113 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://addons/PEWD/Gun/Creator/Stick.tscn" type="PackedScene" id=1]
+[ext_resource path="res://addons/PEWD/Gun/Creator/V3 Joystick.gd" type="Script" id=2]
+[ext_resource path="res://addons/PEWD/Gun/Creator/Reset.png" type="Texture" id=3]
+
+[node name="V3 Joystick wSlider" type="VBoxContainer"]
+anchor_right = 0.149
+anchor_bottom = 0.167
+margin_right = 1.424
+margin_bottom = -20.2
+size_flags_horizontal = 0
+script = ExtResource( 2 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_right = 154.0
+margin_bottom = 80.0
+
+[node name="Stick" parent="HBoxContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 80.0
+margin_bottom = 80.0
+
+[node name="XYZ" type="VBoxContainer" parent="HBoxContainer"]
+margin_left = 84.0
+margin_right = 154.0
+margin_bottom = 80.0
+
+[node name="X" type="HBoxContainer" parent="HBoxContainer/XYZ"]
+margin_right = 70.0
+margin_bottom = 24.0
+
+[node name="Label" type="Label" parent="HBoxContainer/XYZ/X"]
+margin_top = 5.0
+margin_right = 8.0
+margin_bottom = 19.0
+text = "X"
+
+[node name="XEdit" type="LineEdit" parent="HBoxContainer/XYZ/X"]
+margin_left = 12.0
+margin_right = 70.0
+margin_bottom = 24.0
+text = "0"
+caret_blink = true
+caret_blink_speed = 0.5
+
+[node name="Y" type="HBoxContainer" parent="HBoxContainer/XYZ"]
+margin_top = 28.0
+margin_right = 70.0
+margin_bottom = 52.0
+
+[node name="Label" type="Label" parent="HBoxContainer/XYZ/Y"]
+margin_top = 5.0
+margin_right = 7.0
+margin_bottom = 19.0
+text = "Y"
+
+[node name="YEdit" type="LineEdit" parent="HBoxContainer/XYZ/Y"]
+margin_left = 11.0
+margin_right = 69.0
+margin_bottom = 24.0
+text = "0"
+caret_blink = true
+caret_blink_speed = 0.5
+
+[node name="Z" type="HBoxContainer" parent="HBoxContainer/XYZ"]
+margin_top = 56.0
+margin_right = 70.0
+margin_bottom = 80.0
+
+[node name="Label" type="Label" parent="HBoxContainer/XYZ/Z"]
+margin_top = 5.0
+margin_right = 8.0
+margin_bottom = 19.0
+text = "Z"
+
+[node name="ZEdit" type="LineEdit" parent="HBoxContainer/XYZ/Z"]
+margin_left = 12.0
+margin_right = 70.0
+margin_bottom = 24.0
+text = "0"
+caret_blink = true
+caret_blink_speed = 0.5
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+margin_top = 84.0
+margin_right = 154.0
+margin_bottom = 104.0
+
+[node name="Z Slider" type="HSlider" parent="HBoxContainer2"]
+margin_right = 130.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+step = 0.01
+allow_greater = true
+allow_lesser = true
+
+[node name="Reset" type="TextureButton" parent="HBoxContainer2"]
+margin_left = 134.0
+margin_right = 154.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+texture_normal = ExtResource( 3 )
+
+[connection signal="absolute_mov" from="HBoxContainer/Stick" to="." method="_on_Stick_absolute_mov"]
+[connection signal="relative_mov" from="HBoxContainer/Stick" to="." method="_on_Stick_relative_mov"]
+[connection signal="text_entered" from="HBoxContainer/XYZ/X/XEdit" to="." method="_on_XEdit_text_entered"]
+[connection signal="text_entered" from="HBoxContainer/XYZ/Y/YEdit" to="." method="_on_YEdit_text_entered"]
+[connection signal="text_entered" from="HBoxContainer/XYZ/Z/ZEdit" to="." method="_on_ZEdit_text_entered"]
+[connection signal="value_changed" from="HBoxContainer2/Z Slider" to="." method="_on_Z_Slider_value_changed"]
+[connection signal="button_up" from="HBoxContainer2/Reset" to="." method="_on_Reset_button_up"]

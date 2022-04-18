@@ -1,0 +1,119 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://scripts/entitys/Bullets/BulletSharp.cs" type="Script" id=1]
+[ext_resource path="res://addons/kenney_prototypes/assets/colors/light/materials/material_001.tres" type="Material" id=2]
+
+[sub_resource type="SphereShape" id=3]
+radius = 0.04
+
+[sub_resource type="SphereMesh" id=4]
+radius = 0.035
+height = 0.07
+
+[sub_resource type="ParticlesMaterial" id=5]
+flag_align_y = true
+direction = Vector3( 0, 1, 0 )
+gravity = Vector3( 0, -10, 0 )
+initial_velocity = 3.2
+initial_velocity_random = 0.39
+angle_random = 0.54
+scale_random = 0.47
+
+[sub_resource type="CubeMesh" id=6]
+material = ExtResource( 2 )
+size = Vector3( 0.1, 0.1, 0.1 )
+
+[sub_resource type="CubeMesh" id=12]
+size = Vector3( 0.1, 0.1, 0.1 )
+
+[sub_resource type="Curve" id=7]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=8]
+curve = SubResource( 7 )
+
+[sub_resource type="ParticlesMaterial" id=9]
+spread = 0.0
+gravity = Vector3( 0, 0, 0 )
+scale_curve = SubResource( 8 )
+
+[sub_resource type="SpatialMaterial" id=11]
+flags_transparent = true
+albedo_color = Color( 0.627451, 0.627451, 0.627451, 0.403922 )
+
+[sub_resource type="SphereMesh" id=10]
+material = SubResource( 11 )
+radius = 0.035
+height = 0.07
+
+[node name="Bullet" type="Spatial"]
+script = ExtResource( 1 )
+hit_particles = [ NodePath("Holder/Particles/Collision/Particles") ]
+idle_particles = [ NodePath("Holder/Particles/Idle/Particles") ]
+hit_audio = [  ]
+idle_audio = [  ]
+
+[node name="Holder" type="Spatial" parent="."]
+
+[node name="Area" type="Area" parent="Holder"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Holder/Area"]
+shape = SubResource( 3 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Holder/Area"]
+mesh = SubResource( 4 )
+material/0 = null
+
+[node name="Particles" type="Spatial" parent="Holder"]
+
+[node name="Collision" type="Spatial" parent="Holder/Particles"]
+
+[node name="Particles" type="Particles" parent="Holder/Particles/Collision"]
+cast_shadow = 0
+generate_lightmap = false
+emitting = false
+amount = 2
+lifetime = 0.67
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+visibility_aabb = AABB( -0.2, -0.2, -0.2, 0.4, 0.4, 0.4 )
+process_material = SubResource( 5 )
+draw_pass_1 = SubResource( 6 )
+
+[node name="Particles2" type="CPUParticles" parent="Holder/Particles/Collision"]
+cast_shadow = 0
+generate_lightmap = false
+emitting = false
+amount = 2
+lifetime = 0.67
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+mesh = SubResource( 12 )
+flag_align_y = true
+direction = Vector3( 0, 1, 0 )
+gravity = Vector3( 0, -10, 0 )
+initial_velocity = 3.2
+initial_velocity_random = 0.39
+
+[node name="Idle" type="Spatial" parent="Holder/Particles"]
+
+[node name="Particles" type="Particles" parent="Holder/Particles/Idle"]
+emitting = false
+lifetime = 0.2
+local_coords = false
+process_material = SubResource( 9 )
+draw_pass_1 = SubResource( 10 )
+
+[node name="Audio" type="Spatial" parent="Holder"]
+
+[node name="Collision" type="Spatial" parent="Holder/Audio"]
+
+[node name="Idle" type="Spatial" parent="Holder/Audio"]
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="Holder/Area" to="." method="_on_Area_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
