@@ -1,0 +1,4 @@
+﻿  Simple.c
+     Bibliothek "D:\Ferien\GDNativeTest\x64\Debug\GDNativeTest.lib" und Objekt "D:\Ferien\GDNativeTest\x64\Debug\GDNativeTest.exp" werden erstellt.
+MSVCRTD.lib(exe_main.obj) : error LNK2019: Verweis auf nicht aufgelöstes externes Symbol "main" in Funktion ""int __cdecl invoke_main(void)" (?invoke_main@@YAHXZ)".
+D:\Ferien\GDNativeTest\x64\Debug\GDNativeTest.exe : fatal error LNK1120: 1 nicht aufgelöste Externe

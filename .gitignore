@@ -15,4 +15,4 @@ data_*/
 mono_crash.*.json
 
 # Others
-assets/HDR/*
+Incline - GDNative/Incline/assets/HDR/*
