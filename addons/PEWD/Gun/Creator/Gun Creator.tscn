@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://addons/PEWD/Gun/Creator/Bullet Mode.tscn" type="PackedScene" id=1]
+[ext_resource path="res://addons/PEWD/Gun/Creator/Gun Mode.tscn" type="PackedScene" id=2]
+[ext_resource path="res://addons/PEWD/Gun/Creator/Under Construction.tscn" type="PackedScene" id=3]
+
+[node name="Gun Creator" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="TabContainer" type="TabContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+tab_align = 0
+
+[node name="Gun Mode" parent="TabContainer" instance=ExtResource( 2 )]
+
+[node name="Bullet Mode" parent="TabContainer" instance=ExtResource( 1 )]
+margin_bottom = 20.0
+
+[node name="Under Construction" parent="." instance=ExtResource( 3 )]

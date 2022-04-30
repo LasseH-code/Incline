@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/betagunsound1_1.ogg-c275cae73af3425bbab0b685e434f5c7.oggstr"
+
+[deps]
+
+source_file="res://assets/Audio/Guns/betagunsound1_1.ogg"
+dest_files=[ "res://.import/betagunsound1_1.ogg-c275cae73af3425bbab0b685e434f5c7.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

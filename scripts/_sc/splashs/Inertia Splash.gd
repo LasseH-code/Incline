@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 var inout_anim := Anima.begin(self, "inout")
 var zoomy_fuck := Anima.begin(self, "zoomy_fuck")
@@ -10,6 +10,7 @@ func _input(event) -> void:
 		change_to_main_menu()
 
 func _ready():
+	#Engine.set_
 	$Inertia.modulate.a = 0.0
 	$Incline.modulate.a = 0.0
 	make_inout_anim()

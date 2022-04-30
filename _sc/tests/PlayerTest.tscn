@@ -62,8 +62,8 @@ ssao_radius2 = 3.52
 ssao_intensity2 = 1.44
 ssao_light_affect = 0.57
 ssao_quality = 2
-dof_blur_far_enabled = true
 dof_blur_far_distance = 65.15
+dof_blur_far_transition = 749.29
 glow_enabled = true
 glow_bloom = 1.0
 
@@ -226,6 +226,7 @@ __meta__ = {
 
 [node name="SpotLight" type="SpotLight" parent="Lights"]
 transform = Transform( -0.739942, -0.258819, 0.620886, -0.0251454, 0.933013, 0.358964, -0.672201, 0.25, -0.696883, 7.6, 4, -3 )
+layers = 3
 light_energy = 2.761
 light_indirect_energy = 1.294
 spot_range = 39.0
@@ -271,9 +272,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.65366, 0.680161, -1.67694 )
 [node name="Pickup2" parent="Pickups" instance=ExtResource( 13 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.65366, 0.680161, -3.02396 )
 
-[node name="AnimEnd" parent="Pickups/Pickup2" index="2"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.88986, 2.33185, -0.744604 )
-
 [node name="Pickup3" parent="Pickups" instance=ExtResource( 13 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.65366, 0.680161, -4.2083 )
 
@@ -301,4 +299,5 @@ environment = SubResource( 4 )
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 10 )
 
-[editable path="Pickups/Pickup2"]
+[editable path="Player"]
+[editable path="Player/ItemPopup"]

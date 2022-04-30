@@ -2,7 +2,19 @@ extends "res://scripts/entitys/MovableEntity.gd"
 
 onready var cam_holder = $CameraHolder
 onready var cam = $CameraHolder/Camera
+onready var gun_cam = $ViewportContainer/Viewport/Holder/GunCam
+onready var viewmodel = $ViewportContainer/Viewport/Holder/ViewmodelHolder
 onready var items = $Items
+onready var viewport_container = $ViewportContainer
+onready var viewport_viewport = $ViewportContainer/Viewport
+
+onready var item_popup = $ItemPopup
+onready var item_popup_name = $ItemPopup/ItemName
+onready var item_popup_desc = $ItemPopup/ItemDesc
+onready var item_popup_icon = $ItemPopup/Icon
+onready var item_popup_timer = $ItemPopup/Timer
+
+onready var hit_ray = $"ViewportContainer/Viewport/Holder/GunCam/Hit Ray"
 
 signal debug_info(velocity)
 
@@ -30,9 +42,9 @@ export(float, 0, 1, 0.01) var friction_reduction_whilst_accel = 0
 export(bool) var do_wall_friction = true
 export(float) var wall_friction = 0.2
 export(float) var jump_height = 50.0
-export(float) var weight = 1.0
+#export(float) var weight = 1.0
 export(float) var acceleration = 20
-var internal_accel = acceleration
+var internal_accel:float = acceleration
 export(float) var acceleration_rate = .1
 export(Curve) var acceleration_curve
 export(bool) var use_accel_as_friction = false
@@ -43,12 +55,25 @@ export(float) var abrupt_turn_time = 0.2
 var abrupt_turn_timer
 
 export(float) var mouse_sensitivity = 0.1
+export(bool) var viewmodel_rot_lag = false
 var cam_rot = 0
 
 var action_flags = [false, false, false, false] # up | down | left | right
 var primitive_action_flags = [false, false]
 
+func _on_popup_timeout():
+	item_popup.hide();
+
 func recieve_item(type:String, payloads) -> void:
+	item_popup.show()
+	
+	item_popup_timer.stop()
+	item_popup_timer.start()
+	
+	item_popup_name.text = type
+	item_popup_desc.text = Items.get_desc(type)
+	item_popup_icon.texture = Items.get_icon(type)
+	
 	print("Recieved " + type + " item!")
 	for p in payloads:
 		p.get_parent().remove_child(p)
@@ -70,12 +95,19 @@ func create_abrupt_turn_timer() -> void:
 	abrupt_turn_timer = $att
 
 func _ready():
+	var viewport = get_viewport().get_visible_rect().size
+	var vm_rect = viewport_viewport.get_viewport().get_visible_rect().size
+	viewport_container.rect_scale = Vector2(viewport.x / vm_rect.x, viewport.y / vm_rect.y)
+	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	if use_accel_as_friction:
 		friction = acceleration
 	create_abrupt_turn_timer()
 
 func take_dir_input() -> void: 
+	# Direction is NOT normalized on purpose. Giving the Player the ability to
+	# move faster diagonally makes for more fun movement. So if you are gonna
+	# fix it, make it toggleable at least.
 	action_flags = [false, false, false, false]
 	var cam_holder_basis = cam_holder.get_global_transform().basis
 	dir = Vector3.ZERO
@@ -143,7 +175,7 @@ func calc_vel(delta) -> void:
 		friction_temp+=wall_friction;
 	if !is_on_floor():
 		friction_temp *= air_friction_multiplier
-	vel = vel.linear_interpolate(interpolation_vector, friction)
+	vel = vel.linear_interpolate(interpolation_vector, friction_temp)
 	
 	if keep_accel_at_turn:
 		if (vel.z > 0 && dir.z < 0) || (vel.z < 0 && dir.z > 0):
@@ -187,5 +219,23 @@ func _physics_process(delta):
 	calc_vel(delta)
 	vel = move_and_slide(vel, Vector3.UP)
 
-func _process(delta):
+func _process(_delta):
 	emit_signal("debug_info", vel)
+	#gun_cam.global_transform = gun_cam.global_transform.interpolate_with(cam.global_transform, 0.2)
+	#viewmodel.global_transform = cam.global_transform
+	gun_cam.global_transform = cam.global_transform
+	viewmodel.translation = gun_cam.translation
+	
+	if viewmodel_rot_lag: # kinda bugged sadly
+		var temp_rotation = viewmodel.rotation_degrees
+		if temp_rotation.y>0 and gun_cam.rotation_degrees.y<0:
+			temp_rotation.y = -180-(180-temp_rotation.y)
+		#elif temp_rotation.y<0 and gun_cam.rotation_degrees.y>0:
+		#	temp_rotation.y = temp_rotation.y# 180+(-180+temp_rotation.y)
+		viewmodel.rotation_degrees = temp_rotation.linear_interpolate(gun_cam.rotation_degrees, 0.3)
+	else:
+		viewmodel.rotation = gun_cam.rotation
+	#viewmodel.global_transform = viewmodel.global_transform.interpolate_with(gun_cam.global_transform, 0.4)
+	#hit_ray.global_transform = cam.global_transform
+	hit_ray.add_exception(self)
+	#gun_cam.rotation = cam_holder.rotation
