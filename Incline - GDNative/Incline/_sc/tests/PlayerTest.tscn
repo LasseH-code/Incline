@@ -425,12 +425,6 @@ transform = Transform( 0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 29.5032, 1.95951, -21.00
 [node name="Player" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 2, 4 )
 
-[node name="FPS" parent="Player/Debug UI/TopL" index="0"]
-margin_right = 440.0
-
-[node name="Player Velocity" parent="Player/Debug UI/TopL" index="1"]
-margin_right = 440.0
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 8 )
 
