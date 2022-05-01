@@ -216,13 +216,16 @@ func _input(event):
 		get_tree().quit()
 
 func _physics_process(delta):
+	if Input.is_action_pressed("primary"):
+		viewmodel.ShootBullet();
 	take_dir_input()
 	calc_vel(delta)
 	vel = move_and_slide(vel, Vector3.UP)
 
+func GetVel() -> Vector3: # For the Viewmodel
+	return vel
+
 func _process(_delta):
-	if Input.is_action_pressed("primary"):
-		viewmodel.ShootBullet();
 	
 	emit_signal("debug_info", vel)
 	#gun_cam.global_transform = gun_cam.global_transform.interpolate_with(cam.global_transform, 0.2)

@@ -7,7 +7,7 @@
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 4 )
-_shooting_speed = 25.0
+_shooting_speed = 42.0
 _damage_multiplier = 1.0
 _range_multiplier = 1.0
 _speed_multiplier = 1.0

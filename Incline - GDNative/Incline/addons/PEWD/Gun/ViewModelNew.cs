@@ -16,6 +16,11 @@ public class ViewModelNew : Spatial
     [Export]
     public NodePath _ray;
     public RayCast _ray_node;
+    [Export]
+    public bool _do_reference_frame = true;
+    [Export]
+    public NodePath _ref_frame;
+    public Spatial _ref_frame_node;
 
     [Export]
     public string _gun_name = "NULL";
@@ -31,6 +36,12 @@ public class ViewModelNew : Spatial
         _bullet_timer.WaitTime = 1.0f / _gun.Spd;
 
         if (_do_ray_optimization) _ray_node = GetNode<RayCast>(_ray);
+        if (_do_reference_frame && _ref_frame != null) _ref_frame_node = GetNode<Spatial>(_ref_frame);
+        if (!_ref_frame_node.HasMethod("GetVel"))
+        {
+            _do_reference_frame = false;
+            GD.Print("Reference Frame Disabled");
+        }
     }
 
     public void ShootBullet()
@@ -42,9 +53,9 @@ public class ViewModelNew : Spatial
             temp.GlobalTransform = _barrel_end.GlobalTransform;
             temp._res.MultiplyValues(_gun.DmgMul, _gun.SpdMul, _gun.RngMul);
             GetTree().Root.AddChild(temp);
+            temp._speed_addition = ((Vector3)_ref_frame_node.Call("GetVel")).Length();
             if (_do_ray_optimization && _ray_node.IsColliding())
             {
-                GD.Print(_ray_node.GetCollisionPoint());
                 temp.LookAt((_ray_node.GetCollisionPoint()), Vector3.Up);
                 Vector3 rot = temp.Rotation;
                 rot.y = -rot.y;
