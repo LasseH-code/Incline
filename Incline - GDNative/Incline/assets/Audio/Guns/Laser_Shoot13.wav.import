@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Laser_Shoot13.wav-1c0fbfe7ea7bd9d334063b95df78a236.sample"
+
+[deps]
+
+source_file="res://assets/Audio/Guns/Laser_Shoot13.wav"
+dest_files=[ "res://.import/Laser_Shoot13.wav-1c0fbfe7ea7bd9d334063b95df78a236.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://addons/PEWD/Bullet/BulletResource.cs" type="Script" id=1]
+
+[sub_resource type="SphereMesh" id=1]
+radius = 0.05
+height = 0.1
+
+[resource]
+script = ExtResource( 1 )
+name = "TestBullet"
+damage = 10.0
+speed = 40.0
+max_distance = 200.0
+m = SubResource( 1 )
+custom_actions = null

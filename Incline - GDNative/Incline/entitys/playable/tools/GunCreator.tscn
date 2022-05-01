@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "tool
+extends Spatial
+
+export(bool) var edit_gun:bool = false
+export(Mesh) var mesh:Mesh
+
+
+func _process(_delta):
+	if Engine.editor_hint and edit_gun:
+		var temp = load(\"res://entitys/playable/ViewModel.tscn\")
+		add_child(temp)
+"
+
+[node name="GunCreator" type="Spatial"]
+script = SubResource( 1 )
+edit_gun = true

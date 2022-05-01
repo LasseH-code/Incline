@@ -1,0 +1,7 @@
+[gd_resource type="Environment" format=2]
+
+[resource]
+fog_depth_begin = 1.0
+tonemap_mode = 4
+ss_reflections_enabled = true
+ssao_enabled = true

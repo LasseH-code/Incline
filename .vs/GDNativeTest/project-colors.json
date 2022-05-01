@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "30801aa8-18fd-4b08-a8f6-09bb7d46fd6c": {
+      "ProjectGuid": "30801aa8-18fd-4b08-a8f6-09bb7d46fd6c",
+      "DisplayName": "GDNativeTest",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}
