@@ -3,7 +3,8 @@ extends "res://scripts/entitys/MovableEntity.gd"
 onready var cam_holder = $CameraHolder
 onready var cam = $CameraHolder/Camera
 onready var gun_cam = $ViewportContainer/Viewport/Holder/GunCam
-onready var viewmodel = $ViewportContainer/Viewport/Holder/ViewmodelHolder
+onready var viewmodel_holder = $ViewportContainer/Viewport/Holder/ViewmodelHolder
+onready var viewmodel = $ViewportContainer/Viewport/Holder/ViewmodelHolder/Spacer/ViewModel
 onready var items = $Items
 onready var viewport_container = $ViewportContainer
 onready var viewport_viewport = $ViewportContainer/Viewport
@@ -220,21 +221,24 @@ func _physics_process(delta):
 	vel = move_and_slide(vel, Vector3.UP)
 
 func _process(_delta):
+	if Input.is_action_pressed("primary"):
+		viewmodel.ShootBullet();
+	
 	emit_signal("debug_info", vel)
 	#gun_cam.global_transform = gun_cam.global_transform.interpolate_with(cam.global_transform, 0.2)
 	#viewmodel.global_transform = cam.global_transform
 	gun_cam.global_transform = cam.global_transform
-	viewmodel.translation = gun_cam.translation
+	viewmodel_holder.translation = gun_cam.translation
 	
 	if viewmodel_rot_lag: # kinda bugged sadly
-		var temp_rotation = viewmodel.rotation_degrees
+		var temp_rotation = viewmodel_holder.rotation_degrees
 		if temp_rotation.y>0 and gun_cam.rotation_degrees.y<0:
 			temp_rotation.y = -180-(180-temp_rotation.y)
 		#elif temp_rotation.y<0 and gun_cam.rotation_degrees.y>0:
 		#	temp_rotation.y = temp_rotation.y# 180+(-180+temp_rotation.y)
-		viewmodel.rotation_degrees = temp_rotation.linear_interpolate(gun_cam.rotation_degrees, 0.3)
+		viewmodel_holder.rotation_degrees = temp_rotation.linear_interpolate(gun_cam.rotation_degrees, 0.3)
 	else:
-		viewmodel.rotation = gun_cam.rotation
+		viewmodel_holder.rotation = gun_cam.rotation
 	#viewmodel.global_transform = viewmodel.global_transform.interpolate_with(gun_cam.global_transform, 0.4)
 	#hit_ray.global_transform = cam.global_transform
 	hit_ray.add_exception(self)

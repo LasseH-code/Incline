@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Incline - GDNative", "GDNativeTest\GDNativeTest.vcxproj", "{30801AA8-18FD-4B08-A8F6-09BB7D46FD6C}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Incline - GDNative", "Incline - GDNative\GDNativeTest.vcxproj", "{30801AA8-18FD-4B08-A8F6-09BB7D46FD6C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

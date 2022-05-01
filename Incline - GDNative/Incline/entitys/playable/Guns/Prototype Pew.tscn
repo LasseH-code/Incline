@@ -28,7 +28,7 @@ shooting_speed = 50.0
 transform = Transform( -0.059, 0, -1.49561e-07, 0, 0.079, 0, 1.92247e-08, 0, -0.459, 0.73, 0.171213, -0.30264 )
 
 [node name="Cube" type="MeshInstance" parent="MeshHolder/PrototypeCube" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, -3.55271e-15, 0, 1, 0, 0, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, -7.10543e-15, 0, 1, 0, 0, 0 )
 layers = 2
 use_in_baked_light = true
 mesh = SubResource( 1 )

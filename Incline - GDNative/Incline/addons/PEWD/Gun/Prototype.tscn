@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://addons/PEWD/Gun/ViewModelNew.tscn" type="PackedScene" id=1]
+[ext_resource path="res://addons/PEWD/Bullet/New/Bullet.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/Prototype/Stolen/AK47_obj_fbx/AK47/AK47.obj" type="ArrayMesh" id=3]
+[ext_resource path="res://addons/PEWD/Gun/GunResource.cs" type="Script" id=4]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 4 )
+_shooting_speed = 25.0
+_damage_multiplier = 1.0
+_range_multiplier = 1.0
+_speed_multiplier = 1.0
+
+[node name="ViewModel" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+_gun_name = "Prototype"
+_bullet = ExtResource( 2 )
+_gun = SubResource( 1 )
+
+[node name="AK47" type="MeshInstance" parent="MeshHolder" index="0"]
+transform = Transform( -7.43094e-10, 0, 0.017, 0, 0.017, 0, -0.017, 0, -7.43094e-10, 0.353167, -0.0431255, -0.255901 )
+layers = 2
+mesh = ExtResource( 3 )
+material/0 = null
+
+[node name="BarrelEnd" parent="." index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.352902, 0.313439, -1.03774 )

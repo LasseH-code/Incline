@@ -81,11 +81,14 @@ func spawn_bullet():
 			temp.distance *= range_mul
 			temp.speed *= speed_mul 
 		else:
-			pass
+			temp = bullet.instance()
+			temp.global_transform = barrel_end.global_transform
+			#temp.rotate_y(90);
 			#temp = Pewd.create_bullet(global_transform)
 		get_tree().root.add_child(temp)
 		if ray.is_colliding():
 			temp.look_at(ray.get_collision_point(), Vector3.UP)
+			#temp.rotate(temp.global_transform.basis.x, deg2rad(-90))
 		if procedual_anim:
 			p_knockback()
 		bullet_timer.start()

@@ -9,16 +9,25 @@ public class pewd : EditorPlugin
 
 	private Control pewd_edtor_panel; // Editor Panel
 
+	// Fuck this shit
+
 	public override void _EnterTree()
 	{
 		/// Type defnitions ///
-		AddCustomType("Gun", "Spatial", GD.Load<Script>(path+"Gun/Gun.cs"), GD.Load<Texture>(path+"Gun/Gun Icon Optimized.svg"));
-		AddCustomType("HitscanGun", "Spatial", GD.Load<Script>(path+"Gun/HitscanGun.cs"), GD.Load<Texture>(path+"Gun/HitscanOptimized.svg"));
-		AddCustomType("PhysicsGun", "Spatial", GD.Load<Script>(path+"Gun/PhysicsGun.cs"), GD.Load<Texture>(path+"Gun/PhysicsOptimized.svg"));
-		AddCustomType("Bullet", "Spatial", GD.Load<Script>(path+"Bullet/pewd_bullet.cs"), GD.Load<Texture>(path+"Bullet/BulletOptimized.svg"));
+		//AddCustomType("Gun", "Spatial", GD.Load<Script>(path+"Gun/Gun.cs"), GD.Load<Texture>(path+"Gun/Gun Icon Optimized.svg"));
+		//AddCustomType("HitscanGun", "Spatial", GD.Load<Script>(path+"Gun/HitscanGun.cs"), GD.Load<Texture>(path+"Gun/HitscanOptimized.svg"));
+		//AddCustomType("PhysicsGun", "Spatial", GD.Load<Script>(path+"Gun/PhysicsGun.cs"), GD.Load<Texture>(path+"Gun/PhysicsOptimized.svg"));
+		//AddCustomType("Bullet", "Spatial", GD.Load<Script>(path+"Bullet/pewd_bullet.cs"), GD.Load<Texture>(path+"Bullet/BulletOptimized.svg"));
+
+		AddCustomType("PRBullet", "RayCast", GD.Load<Script>(path + "Bullet/New/PRBullet.cs"), GD.Load<Texture>(path + "Bullet/BulletOptimized.svg"));
 		
+		AddCustomType("BulletResource", "Resource", GD.Load<Script>(path + "Bullet/BulletResource.cs"), GD.Load<Texture>(path + "Bullet/BulletOptimized.svg"));
+		AddCustomType("BulletResourceSimple", "Resource", GD.Load<Script>(path + "Bullet/BulletResourceSimple.cs"), GD.Load<Texture>(path + "Bullet/BulletOptimized.svg"));
+		AddCustomType("GunResource", "Resource", GD.Load<Script>(path + "Gun/GunResource.cs"), GD.Load<Texture>(path + "Gun/Gun Icon Optimized.svg"));
+
 		/// Singeton Definitions ///
-		AddAutoloadSingleton("BulletServer", path+"BulletServer/BulletServer.cs");
+		//AddAutoloadSingleton("BulletServer", path+ "BulletServer/BulletServer.cs");
+		//AddAutoloadSingleton("BulletManager", path + "Bullet/BulletManager.cs");
 
 		/// Adding Editor panel ///
 		pewd_edtor_panel = ((Control) GD.Load<PackedScene>("res://addons/PEWD/Gun/Creator/Gun Creator.tscn").Instance()); // Instanciating Edior Panel
@@ -29,13 +38,20 @@ public class pewd : EditorPlugin
 	public override void _ExitTree()
 	{
 		/// Removing Custom Types ///
-		RemoveCustomType("Gun");
-		RemoveCustomType("HitscanGun");
-		RemoveCustomType("PhysicsGun");
-		RemoveCustomType("Bullet");
+		//RemoveCustomType("Gun");
+		//RemoveCustomType("HitscanGun");
+		//RemoveCustomType("PhysicsGun");
+		//RemoveCustomType("Bullet");
+
+		RemoveCustomType("PRBullet");
+
+		RemoveCustomType("BulletResource");
+		RemoveCustomType("BulletResourceSimple");
+		RemoveCustomType("GunResource");
 
 		/// Removing Autoload Singletons ///
-		RemoveAutoloadSingleton("BulletServer");
+		//RemoveAutoloadSingleton("BulletServer");
+		//RemoveAutoloadSingleton("BulletManager");
 
 		/// Deleting Editor Panel ///
 		if (pewd_edtor_panel != null) pewd_edtor_panel.QueueFree();
