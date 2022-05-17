@@ -1,11 +1,30 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://addons/kenney_prototypes/assets/colors/red/materials/material_001.tres" type="Material" id=1]
+[ext_resource path="res://addons/kenney_prototypes/assets/colors/red/textures/texture_01.png" type="Texture" id=1]
 [ext_resource path="res://addons/kenney_prototypes/assets/colors/dark/materials/material_001.tres" type="Material" id=2]
 [ext_resource path="res://assets/Prototype/Prototype Objects/Dummy.cs" type="Script" id=3]
+[ext_resource path="res://assets/shader/EnemyFlash.tres" type="Shader" id=4]
+
+[sub_resource type="ShaderMaterial" id=3]
+resource_local_to_scene = true
+shader = ExtResource( 4 )
+shader_param/color = Color( 1, 1, 1, 1 )
+shader_param/flash_state = 0.0
+shader_param/albedo = Color( 1, 1, 1, 1 )
+shader_param/specular = 0.5
+shader_param/metallic = 0.0
+shader_param/roughness = 1.0
+shader_param/point_size = 0.0
+shader_param/uv1_blend_sharpness = 1.0
+shader_param/uv1_scale = Vector3( 1, 1, 1 )
+shader_param/uv1_offset = Vector3( 0, 0, 0 )
+shader_param/uv2_scale = Vector3( 1, 1, 1 )
+shader_param/uv2_offset = Vector3( 0, 0, 0 )
+shader_param/texture_albedo = ExtResource( 1 )
 
 [sub_resource type="CapsuleMesh" id=1]
-material = ExtResource( 1 )
+resource_local_to_scene = true
+material = SubResource( 3 )
 mid_height = 1.9
 
 [sub_resource type="CapsuleShape" id=2]
@@ -41,3 +60,9 @@ width = 0.2
 height = 3.78131
 depth = 0.2
 material = ExtResource( 2 )
+
+[node name="Flash" type="Tween" parent="."]
+
+[node name="FlashTimer" type="Timer" parent="."]
+wait_time = 0.06
+one_shot = true

@@ -1,0 +1,13 @@
+[gd_resource type="Shader" format=2]
+
+[resource]
+code = "shader_type spatial;
+
+uniform vec4 color : hint_color;
+uniform float flashState : hint_range(0,1) = 0.5;
+
+void fragment()
+{
+	vec4 pixelColor = texture(SCREEN_TEXTURE, SCREEN_UV);
+	ALBEDO = mix(pixelColor.rgb, color.rgb, flashState);
+}"
