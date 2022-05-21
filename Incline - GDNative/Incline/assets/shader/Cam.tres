@@ -1,0 +1,20 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[ext_resource path="res://assets/shader/Cam.gdshader" type="Shader" id=1]
+
+[resource]
+shader = ExtResource( 1 )
+shader_param/middle = Vector2( 0.5, 0.5 )
+shader_param/do_chromatic_abberation = true
+shader_param/offset_r = Vector2( 3, 3 )
+shader_param/offset_g = Vector2( 1, 1 )
+shader_param/offset_b = Vector2( -0.2, -0.2 )
+shader_param/abberation_strength = Vector2( 0.004, 0.004 )
+shader_param/do_distortion = true
+shader_param/distortion_strength = -0.4
+shader_param/distortion_scale = 1.75
+shader_param/do_vignette = false
+shader_param/vignette_multiplier = 1.0
+shader_param/vignette_scale = 1.159
+shader_param/vignette_softness = 1.159
+shader_param/vignette_color = Color( 0, 0, 0, 1 )
