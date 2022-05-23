@@ -20,7 +20,6 @@ _gun = SubResource( 1 )
 
 [node name="AK47" type="MeshInstance" parent="MeshHolder" index="0"]
 transform = Transform( -7.43094e-10, 0, 0.017, 0, 0.017, 0, -0.017, 0, -7.43094e-10, 0.353167, -0.0431255, -0.255901 )
-layers = 2
 mesh = ExtResource( 3 )
 material/0 = null
 
