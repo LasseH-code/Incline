@@ -32,6 +32,8 @@ height = 1.9
 
 [node name="Dummy" type="StaticBody"]
 transform = Transform( 0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 1.95951, 0 )
+collision_layer = 2
+collision_mask = 2
 script = ExtResource( 3 )
 _max_health = 50.0
 _health = 50.0

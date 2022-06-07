@@ -45,7 +45,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Incline"
-run/main_scene="res://_sc/tests/PlayerTest.tscn"
+run/main_scene="res://_sc/tests/TestLevel.tscn"
 boot_splash/image="res://assets/Logo/ArtBoard5 alpha.png"
 boot_splash/bg_color=Color( 0, 0, 0, 1 )
 config/icon="res://icon.png"
@@ -98,7 +98,7 @@ move_jump={
 }
 move_sprint={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777238,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777237,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
 move_sneak={

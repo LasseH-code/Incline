@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://entitys/Pickups/Pickup.tscn" type="PackedScene" id=1]
+[ext_resource path="res://entitys/Pickups/Payloads/Payloads/change_ability TEST_ABILITY.tscn" type="PackedScene" id=2]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 1, 0, 0, 1 )
+
+[sub_resource type="SphereMesh" id=2]
+material = SubResource( 1 )
+
+[node name="TEST_ABILITY" instance=ExtResource( 1 )]
+type = "TEST_ABILITY"
+
+[node name="TEST_ABILITY_PAYLOAD" parent="Payloads" index="0" instance=ExtResource( 2 )]
+
+[node name="MeshNode" parent="." index="4"]
+transform = Transform( 0.794, 0, 0, 0, 0.794, 0, 0, 0, 0.794, 0, 0, 0 )
+mesh = SubResource( 2 )

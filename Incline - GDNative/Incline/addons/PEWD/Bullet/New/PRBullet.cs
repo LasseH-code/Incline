@@ -35,7 +35,12 @@ namespace Incline.addons.PEWD.Bullet.New
             {
                 if (body is IDamagable damagable/* && body.GetScript().HasMethod("Damage")*/)
                 {
+                    GD.Print("IDamagable hit");
                     damagable.Damage(_res.Dmg);
+                }
+                else if (body.HasMethod("Damage"))
+                {
+                    body.Call("Damage", _res.Dmg); 
                 }
                 /*else
                 {

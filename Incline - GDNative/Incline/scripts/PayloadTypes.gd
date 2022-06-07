@@ -4,6 +4,7 @@ enum loadType {
 	STAT = 0,
 	MOD = 1,
 	CUSTOM = 2,
+	ABILITY = 3,
 	NULL = -1
 }
 

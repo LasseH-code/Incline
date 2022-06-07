@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/Levels/Dungeon/Catwalk_Bridge.glb" type="PackedScene" id=1]
+[ext_resource path="res://addons/kenney_prototypes/assets/colors/light/materials/material_003.tres" type="Material" id=2]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 3.1, 0.6, 3 )
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 3.3, 2.3, 0.5 )
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 3.3, 1.4, 0.5 )
+
+[node name="Catwalk_Bridge" instance=ExtResource( 1 )]
+
+[node name="Catwalk_Bridge" parent="." index="0"]
+transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0 )
+material/0 = ExtResource( 2 )
+
+[node name="StaticBody" type="StaticBody" parent="." index="1"]
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1, 0 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="StaticBody" index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, -3 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape3" type="CollisionShape" parent="StaticBody" index="2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 3 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape4" type="CollisionShape" parent="StaticBody" index="3"]
+transform = Transform( 1, 0, 0, 0, 0.819152, -0.573576, 0, 0.573576, 0.819152, 0, 0.844242, -2.25452 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape5" type="CollisionShape" parent="StaticBody" index="4"]
+transform = Transform( -1, -5.01436e-08, -7.16125e-08, 0, 0.819152, -0.573576, 8.74228e-08, -0.573576, -0.819152, 0, 0.844242, 2.34548 )
+shape = SubResource( 3 )

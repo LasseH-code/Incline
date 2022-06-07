@@ -3,9 +3,20 @@ extends "res://scripts/entitys/MovableEntity.gd"
 onready var cam_holder = $CameraHolder
 onready var cam = $CameraHolder/Camera
 onready var gun_cam = $ViewportContainer/Viewport/Holder/GunCam
-onready var viewmodel_holder = $ViewportContainer/Viewport/Holder/ViewmodelHolder
-onready var viewmodel = $ViewportContainer/Viewport/Holder/ViewmodelHolder/Spacer/ViewModel
+onready var viewmodel_holder = $ViewportContainer/Viewport/Holder/Holder/ViewmodelHolder
+onready var viewmodel_holder_holder = $ViewportContainer/Viewport/Holder/Holder
+onready var viewmodel = $ViewportContainer/Viewport/Holder/Holder/ViewmodelHolder/Spacer/ViewModel
+export var viewmodel_locked = false
 onready var items = $Items
+onready var ability = $ViewportContainer/Viewport/Holder/Holder/ViewmodelHolder/Spacer/Ability
+var ability_vm
+export var ability_locked = false
+onready var special = $ViewportContainer/Viewport/Holder/Holder/ViewmodelHolder/Spacer/Special
+var special_vm
+export var special_locked = false
+onready var ultimate = $ViewportContainer/Viewport/Holder/Holder/ViewmodelHolder/Spacer/Ultimate
+var ultimate_vm
+export var ultimate_locked = false
 onready var viewport_container = $ViewportContainer
 onready var viewport_viewport = $ViewportContainer/Viewport
 
@@ -76,15 +87,29 @@ func recieve_item(type:String, payloads) -> void:
 	item_popup_icon.texture = Items.get_icon(type)
 	
 	print("Recieved " + type + " item!")
+	var item
 	for p in payloads:
 		p.get_parent().remove_child(p)
-		items.add_child(p)
+		if p.pt == PayloadTypes.loadType.ABILITY:
+			if !(items.items.has(type)):
+				items.items[type] = 0
+			var cs = ability.get_children()
+			for c in cs:
+				c.queue_free()
+			ability.add_child(p)
+			p.visible = true
+			ability_vm = p
+		else:
+			items.add_child(p)
+		item = p
+
 	if !(items.items.has(type)):
 		items.items[type] = 1
 	else:
 		items.items[type] += 1
 	items.print_items()
 	items.refresh_payloads()
+	
 
 func create_abrupt_turn_timer() -> void:
 	abrupt_turn_timer = Timer.new()
@@ -100,10 +125,19 @@ func _ready():
 	var vm_rect = viewport_viewport.get_viewport().get_visible_rect().size
 	viewport_container.rect_scale = Vector2(viewport.x / vm_rect.x, viewport.y / vm_rect.y)
 	
+	if (special.get_child_count() > 0):
+		special_vm = special.get_child(0)
+	if (ultimate.get_child_count() > 0):
+		ultimate_vm = ultimate.get_child(0)
+	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	if use_accel_as_friction:
 		friction = acceleration
 	create_abrupt_turn_timer()
+
+func set_collision(var l:int):
+	set_collision_layer(l)
+	set_collision_mask(l)
 
 func take_dir_input() -> void: 
 	# Direction is NOT normalized on purpose. Giving the Player the ability to
@@ -216,32 +250,44 @@ func _input(event):
 		get_tree().quit()
 
 func _physics_process(delta):
-	if Input.is_action_pressed("primary"):
-		viewmodel.ShootBullet();
+	if Input.is_action_pressed("primary") and !viewmodel_locked:
+		viewmodel.ShootBullet()
+	
+	if Input.is_action_pressed("ability") and !ability_locked and ability_vm != null:
+		ability_vm.action(self)
+	if Input.is_action_pressed("special") and !special_locked and special_vm != null:
+		special_vm.ShootBullet()
+	if Input.is_action_pressed("ultimate") and !ultimate_locked and ultimate_vm != null:
+		ultimate_vm.ShootBullet()
+	
 	take_dir_input()
 	calc_vel(delta)
-	vel = move_and_slide(vel, Vector3.UP)
+	vel = move_and_slide(vel, Vector3.UP, false, 4, deg2rad(60))
 
 func GetVel() -> Vector3: # For the Viewmodel
 	return vel
+
+func SetVel(var v:Vector3) -> void:
+	vel = v
 
 func _process(_delta):
 	
 	emit_signal("debug_info", vel)
 	#gun_cam.global_transform = gun_cam.global_transform.interpolate_with(cam.global_transform, 0.2)
 	#viewmodel.global_transform = cam.global_transform
+	#var viewmodel_offset:float = cam.global_transform.orign.y-gun_cam
 	gun_cam.global_transform = cam.global_transform
-	viewmodel_holder.translation = gun_cam.translation
+	viewmodel_holder_holder.translation = gun_cam.translation
 	
 	if viewmodel_rot_lag: # kinda bugged sadly
-		var temp_rotation = viewmodel_holder.rotation_degrees
+		var temp_rotation = viewmodel_holder_holder.rotation_degrees
 		if temp_rotation.y>0 and gun_cam.rotation_degrees.y<0:
 			temp_rotation.y = -180-(180-temp_rotation.y)
 		#elif temp_rotation.y<0 and gun_cam.rotation_degrees.y>0:
 		#	temp_rotation.y = temp_rotation.y# 180+(-180+temp_rotation.y)
-		viewmodel_holder.rotation_degrees = temp_rotation.linear_interpolate(gun_cam.rotation_degrees, 0.3)
+		viewmodel_holder_holder.rotation_degrees = temp_rotation.linear_interpolate(gun_cam.rotation_degrees, 0.3)
 	else:
-		viewmodel_holder.rotation = gun_cam.rotation
+		viewmodel_holder_holder.rotation = gun_cam.rotation
 	#viewmodel.global_transform = viewmodel.global_transform.interpolate_with(gun_cam.global_transform, 0.4)
 	#hit_ray.global_transform = cam.global_transform
 	hit_ray.add_exception(self)

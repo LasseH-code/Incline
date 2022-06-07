@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://addons/PEWD/Gun/ViewModelNew.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/Guns/Resources/Dash.tres" type="Resource" id=2]
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends Node
+
+onready var tween:Tween = $Tween
+
+export var time:float = 0.3
+export var effects_pane:NodePath
+export var abberation_str:Vector2 = Vector2(0.005,0.005)
+export var distortion_str:float = 1.0
+
+func Action(player:KinematicBody):
+	player.call(\"set_collision\",1)
+	var addition = Vector3.ZERO
+	addition = Vector3(0,0,-100).rotated(Vector3(1,0,0), player.cam.rotation.x)
+	addition = addition.rotated(Vector3(0,1,0), player.cam_holder.rotation.y)
+	addition.y/=1
+	var before:Vector3 = player.vel
+	player.vel+=addition
+	
+	var col_rect:ColorRect = get_node(effects_pane)
+	var sha_mat:ShaderMaterial = col_rect.material
+	tween.interpolate_property(sha_mat, \"shader_param/abberation_strength\", abberation_str, Vector2(0.002, 0.002), time*1.2)
+	#tween.start()
+	tween.interpolate_property(sha_mat, \"shader_param/distortion_strength\", distortion_str, -0.4, time*1.2)
+	if (Engine.time_scale == 1.0):
+		tween.start()
+	yield(get_tree().create_timer(time), \"timeout\")
+	player.call(\"set_collision\", 3)
+	player.vel = player.vel.linear_interpolate(before, 0.5)
+"
+
+[node name="ViewModel" instance=ExtResource( 1 )]
+_do_reference_frame = false
+_gun_name = "DASH"
+_override_shooting = true
+_override = NodePath("Node")
+_gun = ExtResource( 2 )
+
+[node name="Node" type="Node" parent="." index="6"]
+script = SubResource( 2 )
+abberation_str = Vector2( 0.05, 0.05 )
+distortion_str = 0.706
+
+[node name="Tween" type="Tween" parent="Node" index="0"]

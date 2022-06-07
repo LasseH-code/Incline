@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://entitys/Pickups/Payloads/NULL Payload Spatial.tscn" type="PackedScene" id=1]
+[ext_resource path="res://addons/PEWD/Gun/Prototype.tscn" type="PackedScene" id=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node
+#static onready var viewmodel = $ViewModel
+
+static func action(player) -> void:
+	player.get_node(\"ViewportContainer/Viewport/Holder/Holder/ViewmodelHolder/Spacer/Ability/TEST_ABILITY_PAYLOAD/ViewModel\").ShootBullet()
+"
+
+[node name="TEST_ABILITY_PAYLOAD" instance=ExtResource( 1 )]
+visible = false
+pt = 3
+actionSc = SubResource( 1 )
+
+[node name="ViewModel" parent="." index="0" instance=ExtResource( 2 )]
+_do_ray_optimization = false
+_ray = NodePath("")
+_do_reference_frame = false
+_ref_frame = NodePath("")

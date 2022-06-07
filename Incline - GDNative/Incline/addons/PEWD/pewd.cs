@@ -25,6 +25,8 @@ public class pewd : EditorPlugin
 		AddCustomType("BulletResourceSimple", "Resource", GD.Load<Script>(path + "Bullet/BulletResourceSimple.cs"), GD.Load<Texture>(path + "Bullet/BulletOptimized.svg"));
 		AddCustomType("GunResource", "Resource", GD.Load<Script>(path + "Gun/GunResource.cs"), GD.Load<Texture>(path + "Gun/Gun Icon Optimized.svg"));
 
+		//AddCustomType("DamagableKinematicBody", "KinematicBody", GD.Load<Script>(path + "Health/DamagablePhysicsBody.cs"), GD.Load<Texture>(null));
+
 		/// Singeton Definitions ///
 		//AddAutoloadSingleton("BulletServer", path+ "BulletServer/BulletServer.cs");
 		//AddAutoloadSingleton("BulletManager", path + "Bullet/BulletManager.cs");
@@ -48,6 +50,8 @@ public class pewd : EditorPlugin
 		RemoveCustomType("BulletResource");
 		RemoveCustomType("BulletResourceSimple");
 		RemoveCustomType("GunResource");
+
+		//RemoveCustomType("DamagableKinematicBody");
 
 		/// Removing Autoload Singletons ///
 		//RemoveAutoloadSingleton("BulletServer");
