@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://addons/PEWD/Gun/GunResource.cs" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+_shooting_speed = 0.143
+_damage_multiplier = 1.0
+_range_multiplier = 1.0
+_speed_multiplier = 1.0

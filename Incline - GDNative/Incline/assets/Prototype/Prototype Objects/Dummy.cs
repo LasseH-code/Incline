@@ -1,4 +1,5 @@
 using Godot;
+using Incline.addons.PEWD;
 using Incline.addons.PEWD.Health;
 using System;
 
@@ -49,5 +50,10 @@ public class Dummy : StaticBody, IDamagable
         flashTimer.Stop();
         t.InterpolateProperty(shader, "shader_param/flash_state", 1, 0, (float)flashTimer.WaitTime, Tween.TransitionType.Linear, Tween.EaseType.InOut);
         t.Start();
+    }
+    
+    public void Damage(float dmg)
+    {
+        PewdSingleton.Damage(dmg, (IDamagable)this);
     }
 }

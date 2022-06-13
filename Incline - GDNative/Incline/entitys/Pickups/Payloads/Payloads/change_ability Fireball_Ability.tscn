@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://entitys/Pickups/Payloads/NULL Payload Spatial.tscn" type="PackedScene" id=1]
+
+[sub_resource type="GDScript" id=1]
+resource_local_to_scene = true
+script/source = "extends Node
+#static onready var viewmodel = $ViewModel
+
+static func action(player) -> void:
+	player.get_node(\"ViewportContainer/Viewport/Holder/Holder/ViewmodelHolder/Spacer/Ability/Fireball Payload/ViewModel\").ShootBullet()
+"
+
+[node name="Fireball Payload" instance=ExtResource( 1 )]
+pt = 3
+actionSc = SubResource( 1 )

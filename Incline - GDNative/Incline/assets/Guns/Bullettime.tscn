@@ -32,6 +32,7 @@ func _process(delta):
 var player
 var m_spd
 var accel
+var vm_spd_mul
 
 func Action(player:KinematicBody):
 	self.player = player
@@ -54,6 +55,7 @@ func Action(player:KinematicBody):
 	player.ultimate_locked = true
 	
 	#var vm_spd_bef = player.viewmodel.speed_multiplier
+	vm_spd_mul = player.viewmodel.speed_multiplier
 	player.viewmodel.speed_multiplier *= time_scale
 	
 	m_spd = player.max_speed
@@ -61,15 +63,12 @@ func Action(player:KinematicBody):
 	accel = player.acceleration
 	player.acceleration/=(time_scale*player_adjustment)
 	
-	$Timer.wait_time = time
-	$Timer.start()
+	#$Timer.wait_time = time
+	#$Timer.start()
 	display_power_up = true
-	#yield(get_tree().create_timer(time*time_scale), \"timeout\")
-
-
-func _on_Timer_timeout():
+	yield(get_tree().create_timer(time*time_scale), \"timeout\")
 	display_power_up = false
-	player.call(\"set_collision\", 3)
+	#player.call(\"set_collision\", 3)
 	Engine.time_scale = 1.0
 	
 	#player.viewmodel_locked = false
@@ -77,10 +76,27 @@ func _on_Timer_timeout():
 	player.special_locked = false
 	player.ultimate_locked = false
 	
-	player.viewmodel.speed_multiplier /= time_scale
+	player.viewmodel.speed_multiplier = vm_spd_mul
 	
 	player.max_speed = m_spd
 	player.acceleration = accel
+
+
+func _on_Timer_timeout():
+	#display_power_up = false
+	#player.call(\"set_collision\", 3)
+	#Engine.time_scale = 1.0
+	
+	#player.viewmodel_locked = false
+	#player.ability_locked = false
+	#player.special_locked = false
+	#player.ultimate_locked = false
+	
+	#player.viewmodel.speed_multiplier /= time_scale
+	
+	#player.max_speed = m_spd
+	#player.acceleration = accel
+	pass
 "
 
 [sub_resource type="DynamicFont" id=2]

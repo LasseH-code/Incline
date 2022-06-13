@@ -37,5 +37,3 @@ texture = ExtResource( 3 )
 
 [node name="BulletTimer" type="Timer" parent="."]
 one_shot = true
-
-[connection signal="ready" from="Crosshair/Texture" to="." method="_on_Texture_ready"]

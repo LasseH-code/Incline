@@ -16,13 +16,7 @@ namespace Incline.addons.PEWD.Health
         [Export]
         public float Resistance { get; set; }
 
-        public void Damage(float hp)
-        {
-            Health -= hp * (1-Resistance);
-            GD.Print(Health + hp + "->" + Health);
-            if (Health <= 0) Kill();
-            DamageEffect();
-        }
+        public void Damage(float hp);
 
         public void DamageEffect();
 

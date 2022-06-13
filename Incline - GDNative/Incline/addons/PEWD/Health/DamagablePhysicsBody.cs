@@ -22,6 +22,11 @@ namespace Incline.addons.PEWD.Health
         public float Health { get => _health; set => _health = value; }
         public float Resistance { get => _resistance; set => _resistance = value; }
 
+        public void Damage(float hp)
+        {
+            PewdSingleton.Damage(hp, (IDamagable)this);
+        }
+
         public void DamageEffect()
         {
             if (effect.HasMethod("action"))

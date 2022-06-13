@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://addons/PEWD/Gun/ViewModelNew.tscn" type="PackedScene" id=1]
+
+[node name="Fireball" instance=ExtResource( 1 )]
+_do_ray_optimization = false
+_do_reference_frame = false
+_gun_name = "Fireball"

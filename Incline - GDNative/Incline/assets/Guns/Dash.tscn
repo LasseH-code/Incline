@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://addons/PEWD/Gun/ViewModelNew.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/Guns/Resources/Dash.tres" type="Resource" id=2]
@@ -7,13 +7,20 @@
 script/source = "extends Node
 
 onready var tween:Tween = $Tween
+onready var sphere:CollisionShape = get_parent().get_node(\"DamageArea/CollisionShape\")
 
 export var time:float = 0.3
 export var effects_pane:NodePath
 export var abberation_str:Vector2 = Vector2(0.005,0.005)
 export var distortion_str:float = 1.0
+export var damage = 3.0
+export var range_factor = 0.1
+export var damage_factor = 0.1
+
+var p
 
 func Action(player:KinematicBody):
+	p = player
 	player.call(\"set_collision\",1)
 	var addition = Vector3.ZERO
 	addition = Vector3(0,0,-100).rotated(Vector3(1,0,0), player.cam.rotation.x)
@@ -24,15 +31,38 @@ func Action(player:KinematicBody):
 	
 	var col_rect:ColorRect = get_node(effects_pane)
 	var sha_mat:ShaderMaterial = col_rect.material
-	tween.interpolate_property(sha_mat, \"shader_param/abberation_strength\", abberation_str, Vector2(0.002, 0.002), time*1.2)
+	var abb_str:Vector2 = sha_mat.get_shader_param(\"abberation_strength\")
+	tween.interpolate_property(sha_mat, \"shader_param/abberation_strength\", abberation_str, abb_str, time*1.2*Engine.time_scale)
 	#tween.start()
-	tween.interpolate_property(sha_mat, \"shader_param/distortion_strength\", distortion_str, -0.4, time*1.2)
-	if (Engine.time_scale == 1.0):
-		tween.start()
+	var dis_str:float = sha_mat.get_shader_param(\"distortion_strength\")
+	tween.interpolate_property(sha_mat, \"shader_param/distortion_strength\", distortion_str, dis_str, time*1.2*Engine.time_scale)
+	tween.start()
+	sphere.disabled = false
 	yield(get_tree().create_timer(time), \"timeout\")
+	sphere.disabled = true
 	player.call(\"set_collision\", 3)
 	player.vel = player.vel.linear_interpolate(before, 0.5)
+
+func calculate_speed() -> float:
+	var t = p.vel.length()
+	#print(t)
+	return t
+
+func _physics_process(delta) -> void:
+	if not sphere.disabled:
+		sphere.shape.radius = calculate_speed()*range_factor
+
+func calculate_damage(spd:float) -> float:
+	var par = get_parent()
+	return damage*par.damage_multiplier*par._gun._damage_multiplier*(sphere.shape.radius*damage_factor)
+
+func _on_DamageArea_body_entered(body:Node) -> void:
+	if body.has_method(\"Damage\") and not body == p:
+		body.Damage(calculate_damage(calculate_speed()))
 "
+
+[sub_resource type="SphereShape" id=3]
+radius = 0.0
 
 [node name="ViewModel" instance=ExtResource( 1 )]
 _do_reference_frame = false
@@ -45,5 +75,18 @@ _gun = ExtResource( 2 )
 script = SubResource( 2 )
 abberation_str = Vector2( 0.05, 0.05 )
 distortion_str = 0.706
+damage = 4.0
+range_factor = 0.054
+damage_factor = 0.288
 
 [node name="Tween" type="Tween" parent="Node" index="0"]
+
+[node name="DamageArea" type="Area" parent="." index="7"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape" type="CollisionShape" parent="DamageArea" index="0"]
+shape = SubResource( 3 )
+disabled = true
+
+[connection signal="body_entered" from="DamageArea" to="Node" method="_on_DamageArea_body_entered"]

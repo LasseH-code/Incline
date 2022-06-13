@@ -8,48 +8,8 @@ using Incline.addons.PEWD.Health;
 
 namespace Incline.addons.PEWD.Bullet.New
 {
-    public class PRBullet : RayCast
+    public class PRBullet : Bullet
     {
-        [Export]
-        public BulletResourceSimple _res;
-        [Export]
-        private float _collision_distance = .05f;
-
-        public float _speed_addition = 0.0f;
-
-        private Vector3 _starting_position;
-
-        private bool _kill_next_frame = false;
-
-        public override void _Ready()
-        {
-            _starting_position = this.GlobalTransform.origin;
-            this.CastTo = new Vector3(0,0,0);
-            this.Enabled = true;
-            //this.RotateY(180);
-        }
-
-        private void impact(PhysicsBody body)
-        {
-            if (body != null)
-            {
-                if (body is IDamagable damagable/* && body.GetScript().HasMethod("Damage")*/)
-                {
-                    GD.Print("IDamagable hit");
-                    damagable.Damage(_res.Dmg);
-                }
-                else if (body.HasMethod("Damage"))
-                {
-                    body.Call("Damage", _res.Dmg); 
-                }
-                /*else
-                {
-                    GD.Print(body.Name + " does not implement IDamagable");
-                    GD.Print("body.GetScript() = " + body.GetScript());
-                }*/
-            }
-            QueueFree();
-        }
 
         public override void _PhysicsProcess(float delta)
         {
@@ -72,9 +32,9 @@ namespace Incline.addons.PEWD.Bullet.New
             }
             // Compact this
 
-            Vector3 t = this.Translation;
-            Vector3 n = t.Normalized();
-            this.Translation += ((-this.GlobalTransform.basis.z) * ((_res.Spd + _speed_addition) * delta));//.Rotated(Vector3.Up, Mathf.Deg2Rad(90));
+            /*Vector3 t = this.Translation;
+            Vector3 n = t.Normalized();*/
+            this.Translation += (-this.GlobalTransform.basis.z) * ((_res.Spd + _speed_addition) * delta);//.Rotated(Vector3.Up, Mathf.Deg2Rad(90));
         }
     }
 }

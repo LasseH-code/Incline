@@ -1,0 +1,70 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://entitys/Pickups/Pickup.tscn" type="PackedScene" id=1]
+[ext_resource path="res://entitys/Pickups/Payloads/Payloads/change_ability Fireball_Ability.tscn" type="PackedScene" id=2]
+
+[sub_resource type="GDScript" id=6]
+resource_local_to_scene = true
+script/source = "extends Node
+#static onready var viewmodel = $ViewModel
+
+static func action(player) -> void:
+	player.get_node(\"ViewportContainer/Viewport/Holder/Holder/ViewmodelHolder/Spacer/Ability/Fireball Payload/ViewModel\").ShootBullet()
+"
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 1, 0, 0, 1 )
+
+[sub_resource type="SphereMesh" id=2]
+material = SubResource( 1 )
+radius = 0.4
+height = 0.8
+radial_segments = 16
+rings = 8
+
+[sub_resource type="ParticlesMaterial" id=3]
+lifetime_randomness = 0.36
+trail_divisor = 3
+emission_shape = 1
+emission_sphere_radius = 0.46
+direction = Vector3( 0, 1, 0 )
+spread = 90.59
+flatness = 0.7
+gravity = Vector3( 0, 1.87, 0 )
+initial_velocity = 0.89
+initial_velocity_random = 0.18
+angular_velocity = 0.46
+angular_velocity_random = 0.18
+radial_accel = 0.61
+radial_accel_random = 0.84
+angle = -156.7
+angle_random = 0.43
+scale_random = 0.17
+
+[sub_resource type="SpatialMaterial" id=4]
+albedo_color = Color( 1, 0, 0, 1 )
+
+[sub_resource type="SphereMesh" id=5]
+material = SubResource( 4 )
+radius = 0.04
+height = 0.08
+radial_segments = 4
+rings = 2
+
+[node name="Fireball" instance=ExtResource( 1 )]
+type = "Fireball_Ability"
+
+[node name="Fireball Payload" parent="Payloads" index="0" instance=ExtResource( 2 )]
+actionSc = SubResource( 6 )
+
+[node name="MeshNode" parent="." index="4"]
+mesh = SubResource( 2 )
+
+[node name="Particles" type="Particles" parent="MeshNode" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0101639, 0, 0 )
+amount = 124
+lifetime = 0.79
+randomness = 0.35
+visibility_aabb = AABB( -0.484012, -0.643, -0.474, 0.969, 1.285, 0.948 )
+process_material = SubResource( 3 )
+draw_pass_1 = SubResource( 5 )

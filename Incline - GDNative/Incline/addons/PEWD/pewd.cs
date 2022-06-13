@@ -20,6 +20,8 @@ public class pewd : EditorPlugin
 		//AddCustomType("Bullet", "Spatial", GD.Load<Script>(path+"Bullet/pewd_bullet.cs"), GD.Load<Texture>(path+"Bullet/BulletOptimized.svg"));
 
 		AddCustomType("PRBullet", "RayCast", GD.Load<Script>(path + "Bullet/New/PRBullet.cs"), GD.Load<Texture>(path + "Bullet/BulletOptimized.svg"));
+		AddCustomType("Bullet", "RayCast", GD.Load<Script>(path + "Bullet/New/Bullet.cs"), GD.Load<Texture>(path + "Bullet/BulletOptimized.svg"));
+		AddCustomType("CustomBullet", "RayCast", GD.Load<Script>(path + "Bullet/New/CustomBullet.cs"), GD.Load<Texture>(path + "Bullet/BulletOptimized.svg"));
 		
 		AddCustomType("BulletResource", "Resource", GD.Load<Script>(path + "Bullet/BulletResource.cs"), GD.Load<Texture>(path + "Bullet/BulletOptimized.svg"));
 		AddCustomType("BulletResourceSimple", "Resource", GD.Load<Script>(path + "Bullet/BulletResourceSimple.cs"), GD.Load<Texture>(path + "Bullet/BulletOptimized.svg"));
@@ -28,6 +30,8 @@ public class pewd : EditorPlugin
 		//AddCustomType("DamagableKinematicBody", "KinematicBody", GD.Load<Script>(path + "Health/DamagablePhysicsBody.cs"), GD.Load<Texture>(null));
 
 		/// Singeton Definitions ///
+		AddAutoloadSingleton("Pewd", path + "PewdSingleton.cs");
+		AddAutoloadSingleton("Time", path + "TimeSingleton.cs");
 		//AddAutoloadSingleton("BulletServer", path+ "BulletServer/BulletServer.cs");
 		//AddAutoloadSingleton("BulletManager", path + "Bullet/BulletManager.cs");
 
@@ -46,6 +50,8 @@ public class pewd : EditorPlugin
 		//RemoveCustomType("Bullet");
 
 		RemoveCustomType("PRBullet");
+		RemoveCustomType("Bullet");
+		RemoveCustomType("CustomBullet");
 
 		RemoveCustomType("BulletResource");
 		RemoveCustomType("BulletResourceSimple");
@@ -54,6 +60,8 @@ public class pewd : EditorPlugin
 		//RemoveCustomType("DamagableKinematicBody");
 
 		/// Removing Autoload Singletons ///
+		RemoveAutoloadSingleton("Pewd");
+		RemoveAutoloadSingleton("Time");
 		//RemoveAutoloadSingleton("BulletServer");
 		//RemoveAutoloadSingleton("BulletManager");
 

@@ -23,6 +23,9 @@ time = 10.0
 anim_len = 0.2
 effects_pane = NodePath("../../../../../../../../../HUD/ColorRect")
 
+[connection signal="ready" from="ViewportContainer/Viewport/Holder/Holder/ViewmodelHolder/Spacer/ViewModel/Crosshair/Texture" to="ViewportContainer/Viewport/Holder/Holder/ViewmodelHolder/Spacer/ViewModel" method="_on_Texture_ready"]
+[connection signal="ready" from="ViewportContainer/Viewport/Holder/Holder/ViewmodelHolder/Spacer/Ultimate/ViewModel/Crosshair/Texture" to="ViewportContainer/Viewport/Holder/Holder/ViewmodelHolder/Spacer/Ultimate/ViewModel" method="_on_Texture_ready"]
+
 [editable path="ViewportContainer/Viewport/Holder/Holder/ViewmodelHolder/Spacer/ViewModel"]
 [editable path="ViewportContainer/Viewport/Holder/Holder/ViewmodelHolder/Spacer/Ultimate/ViewModel"]
 [editable path="ItemPopup"]

@@ -6,4 +6,4 @@
 [node name="PrototypeCube" instance=ExtResource( 1 )]
 
 [node name="Cube" parent="." index="0"]
-material/0 = ExtResource( 2 )
+material_override = ExtResource( 2 )
