@@ -26,6 +26,8 @@ shader_param/texture_albedo = ExtResource( 1 )
 resource_local_to_scene = true
 material = SubResource( 3 )
 mid_height = 1.9
+radial_segments = 8
+rings = 2
 
 [sub_resource type="CapsuleShape" id=2]
 height = 1.9

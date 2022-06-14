@@ -69,7 +69,7 @@ window/stretch/mode="2d"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/PEWD/plugin.cfg", "res://addons/anima/plugin.cfg", "res://addons/vpainter/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/PEWD/plugin.cfg", "res://addons/anima/plugin.cfg", "res://addons/christopher/plugin.cfg", "res://addons/vpainter/plugin.cfg" )
 
 [input]
 
