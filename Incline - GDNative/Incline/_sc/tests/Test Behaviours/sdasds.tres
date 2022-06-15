@@ -1,0 +1,8 @@
+[gd_resource type="Resource" format=2]
+
+[resource]
+tag = "tsetd"
+mode = 2
+expression = null
+use_node = true
+node = null

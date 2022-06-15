@@ -7,7 +7,7 @@ using Godot;
 
 namespace Incline.addons.PEWD
 {
-    public static class TimeSingleton
+    public class TimeSingleton : Node
     {
         private static float standard_time_scale = 1.0f;
         public static float StandardTimeScale { get => standard_time_scale; set => standard_time_scale = value; }

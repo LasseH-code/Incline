@@ -55,8 +55,6 @@ config/icon="res://icon.png"
 PayloadTypes="*res://scripts/PayloadTypes.gd"
 Items="*res://scripts/Items.gd"
 Anima="*res://addons/anima/core/anima.gd"
-BulletManager="*res://addons/PEWD/Bullet/BulletManager.cs"
-BulletServer="*res://addons/PEWD/BulletServer/BulletServer.cs"
 Pewd="*res://addons/PEWD/PewdSingleton.cs"
 Time="*res://addons/PEWD/TimeSingleton.cs"
 

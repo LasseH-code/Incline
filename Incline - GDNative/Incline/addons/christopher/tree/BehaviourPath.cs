@@ -9,11 +9,19 @@ namespace Incline.addons.christopher.tree
 {
     public class BehaviourPath : Node
     {
+        /*[Export]
+        protected Godot.Collections.Array<Behaviour> behaviours;*/
         [Export]
-        protected Godot.Collections.Dictionary<string, Behaviour> behaviours;
-        public Godot.Collections.Dictionary<string, Behaviour> Behaviours { get => behaviours; }
-        protected Godot.Collections.Dictionary<string, int> behaviorIndex;
-        public Godot.Collections.Dictionary<string, int> BehaviorIndex { get => behaviorIndex; }
+        protected Behaviour[] bs;
+        public Behaviour[] Behaviours { get => bs; }
+        /*protected Godot.Collections.Dictionary<string, Resource> behaviours;
+        public Godot.Collections.Dictionary<string, Resource> Behaviours { get => behaviours; }*/
+        protected Dictionary<string, int> behaviorIndex;
+        public Dictionary<string, int> BehaviorIndex { get => behaviorIndex; }
+
+        /*[Export]
+        protected Godot.Collections.Array<string> code;*/
+
         [Export]
         public bool running = true;
 
@@ -22,22 +30,33 @@ namespace Incline.addons.christopher.tree
 
         public int behaviour_pointer;
 
+        public override void _EnterTree()
+        {
+            GD.Print("test-2");
+        }
+
         public override void _Ready()
         {
+            GD.Print("test-1");
             behaviour_pointer = start_index;
+            behaviorIndex = new Dictionary<string, int>();
+
+            GD.Print("test");
 
             Refreshbehaviours();
         }
 
         public void Refreshbehaviours()
         {
-            BehaviorIndex.Clear();
-            for (int i = 0; i < behaviours.Count; i++)
+            //behaviorIndex.Clear();
+            for (int i = 0; i < bs.Length; i++)
             {
-                Behaviour b = behaviours.ElementAt(i).Value;
-                b.bp = this;
-                b.Next = i + 1 % behaviours.Count;
-                BehaviorIndex.Add(behaviours.ElementAt(i).Key, i);
+                GD.Print("test2");
+                Behaviour r = bs[i];
+                //Behaviour b = (Behaviour)r;
+                r.bp = this;
+                r.Next = i + 1 % bs.Length;
+                //behaviorIndex.Add(r.tag, i);
             }
         }
 
@@ -45,7 +64,7 @@ namespace Incline.addons.christopher.tree
         {
             if (running)
             {
-                Behaviour b = behaviours.ElementAt(behaviour_pointer).Value;
+                Behaviour b = bs[behaviour_pointer];
                 if (b.Run())
                 {
                     behaviour_pointer = b.Next;

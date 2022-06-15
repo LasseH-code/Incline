@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Incline.addons.PEWD
 {
-    public class PewdSingleton
+    public class PewdSingleton : Node
     {
         public static void Damage(float hp, IDamagable subj)
         {

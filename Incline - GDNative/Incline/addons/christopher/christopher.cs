@@ -22,7 +22,10 @@ public class christopher : EditorPlugin
     public override void _EnterTree()
     {
         add_type("BehaviorPath", "Node", PATH + "tree/BehaviourPath.cs", null);
-        add_type("Behavior", "Resource", PATH + "tree/Behaviour.cs", null);
+        
+        add_type("BaseBehavior", "Resource", PATH + "tree/Behaviour.cs", null);
+        add_type("WarpBehavior", "Resource", PATH + "tree/Behaviours/WarpBehaviour.cs", null);
+        //add_type("CustomBehavior", "Resource", PATH + "tree/Behaviours/CustomBehaviour.cs", null);
     }
 
     public override void _ExitTree()
