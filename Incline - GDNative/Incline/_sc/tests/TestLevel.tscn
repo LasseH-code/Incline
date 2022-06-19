@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://addons/kenney_prototypes/assets/colors/dark/materials/material_001.tres" type="Material" id=1]
 [ext_resource path="res://entitys/playable/Characters/Dasher.tscn" type="PackedScene" id=2]
@@ -10,6 +10,8 @@
 [ext_resource path="res://entitys/Pickups/Pickups/TEST_ABILITY.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/Prototype/Prototype Objects/Dummy.tscn" type="PackedScene" id=9]
 [ext_resource path="res://entitys/Pickups/Pickups/SPEED_UP.tscn" type="PackedScene" id=10]
+[ext_resource path="res://entitys/Enemy/AI-Test.tscn" type="PackedScene" id=11]
+[ext_resource path="res://entitys/Enemy/Enemy Controller.tscn" type="PackedScene" id=12]
 
 [sub_resource type="ProceduralSky" id=1]
 
@@ -26,523 +28,11 @@ adjustment_enabled = true
 adjustment_brightness = 2.22
 adjustment_saturation = 1.15
 
+[sub_resource type="NavigationMesh" id=3]
+vertices = PoolVector3Array( 78.3, 8.9, -4.61941, 78.3, 8.9, -1.31941, 83.7, 8.9, -1.31941, 83.7, 8.9, -4.61941, 1.8, 55.3, -0.119409, -3.9, 55.3, -0.119409, -0.3, 55.3, 0.480591, 1.8, 55.3, -0.119409, -0.3, 55.3, 0.480591, 5.7, 55.3, 0.180591, 8.4, 55.3, -0.119409, 73.8, 55.3, -0.119409, 67.2, 55.3, -0.119409, 68.7, 55.3, 0.180591, 75, 55.3, 0.180591, 8.4, 55.3, -0.119409, 5.7, 55.3, 0.180591, 12, 55.3, 0.180591, 15, 55.3, -0.119409, 67.2, 55.3, -0.119409, 60.6, 55.3, -0.119409, 62.4, 55.3, 0.180591, 68.7, 55.3, 0.180591, 15, 55.3, -0.119409, 12, 55.3, 0.180591, 18.3, 55.3, 0.180591, 21.6, 55.3, -0.119409, 60.6, 55.3, -0.119409, 54, 55.3, -0.119409, 56.1, 55.3, 0.180591, 62.4, 55.3, 0.180591, 21.6, 55.3, -0.119409, 18.3, 55.3, 0.180591, 24.6, 55.3, 0.180591, 27.9, 55.3, -0.119409, 21.6, 55.3, -0.119409, 24.6, 55.3, 0.180591, 30.9, 55.3, 0.180591, 93.3, 55.3, -0.119409, 86.7, 55.3, -0.119409, 87.6, 55.3, 0.180591, 93.9, 55.3, 0.180591, 34.5, 55.3, -0.119409, 27.9, 55.3, -0.119409, 30.9, 55.3, 0.180591, 37.2, 55.3, 0.180591, 93.9, 55.3, 0.180591, 99.9, 55.3, 0.480591, 99.9, 55.3, -0.119409, 93.3, 55.3, -0.119409, 41.1, 55.3, -0.119409, 34.5, 55.3, -0.119409, 37.2, 55.3, 0.180591, 43.5, 55.3, 0.180591, 86.7, 55.3, -0.119409, 80.1, 55.3, -0.119409, 81.3, 55.3, 0.180591, 87.6, 55.3, 0.180591, 47.7, 55.3, -0.119409, 41.1, 55.3, -0.119409, 43.5, 55.3, 0.180591, 49.8, 55.3, 0.180591, 80.1, 55.3, -0.119409, 73.8, 55.3, -0.119409, 75, 55.3, 0.180591, 81.3, 55.3, 0.180591, 54, 55.3, -0.119409, 47.7, 55.3, -0.119409, 49.8, 55.3, 0.180591, 56.1, 55.3, 0.180591, 102.3, 2.3, 6.48059, 102.3, 2.3, 0.480591, 101.4, 2.3, 0.480591, 101.4, 2.3, 6.48059, 102.3, 2.3, 37.3806, 102.3, 2.3, 31.0806, 101.4, 2.3, 31.0806, 101.4, 2.3, 37.3806, 101.4, 2.3, 93.1806, 101.4, 2.3, 99.4806, 102.3, 2.3, 99.4806, 102.3, 2.3, 93.1806, 102.3, 2.3, 12.7806, 102.3, 2.3, 6.48059, 101.4, 2.3, 6.48059, 101.4, 2.3, 12.7806, 101.4, 2.3, 86.8806, 101.4, 2.3, 93.1806, 102.3, 2.3, 93.1806, 102.3, 2.3, 86.8806, 102.3, 2.3, 18.7806, 102.3, 2.3, 12.7806, 101.4, 2.3, 12.7806, 101.4, 2.3, 18.7806, 101.4, 2.3, 80.5806, 101.4, 2.3, 86.8806, 102.3, 2.3, 86.8806, 102.3, 2.3, 80.5806, 101.4, 2.3, 37.3806, 101.4, 2.3, 43.6806, 102.3, 2.3, 43.6806, 102.3, 2.3, 37.3806, 101.4, 2.3, 74.5806, 101.4, 2.3, 80.5806, 102.3, 2.3, 80.5806, 102.3, 2.3, 74.5806, 101.4, 2.3, 25.0806, 101.4, 2.3, 31.0806, 102.3, 2.3, 31.0806, 102.3, 2.3, 25.0806, 101.4, 2.3, 68.2806, 101.4, 2.3, 74.5806, 102.3, 2.3, 74.5806, 102.3, 2.3, 68.2806, 102.3, 2.3, 25.0806, 102.3, 2.3, 18.7806, 101.4, 2.3, 18.7806, 101.4, 2.3, 25.0806, 101.4, 2.3, 62.2806, 101.4, 2.3, 68.2806, 102.3, 2.3, 68.2806, 102.3, 2.3, 62.2806, 102.3, 2.3, 55.9806, 102.3, 2.3, 49.9806, 101.4, 2.3, 49.9806, 101.4, 2.3, 55.9806, 101.4, 2.3, 55.9806, 101.4, 2.3, 62.2806, 102.3, 2.3, 62.2806, 102.3, 2.3, 55.9806, 101.4, 2.3, 43.6806, 101.4, 2.3, 49.9806, 102.3, 2.3, 49.9806, 102.3, 2.3, 43.6806, -1.5, 1.1, 92.8806, -1.2, 1.1, 98.8806, -1.2, 1.1, 92.5806, -1.2, 1.1, 13.0806, -1.5, 1.1, 1.38059, -1.5, 1.1, 13.3806, -1.5, 1.1, 86.8806, -1.5, 1.1, 92.8806, -1.2, 1.1, 92.5806, -1.2, 1.1, 86.5806, -1.2, 1.1, 43.6806, -1.2, 1.1, 37.6806, -1.5, 1.1, 37.9806, -1.5, 1.1, 43.9806, -1.2, 1.1, 19.0806, -1.2, 1.1, 13.0806, -1.5, 1.1, 13.3806, -1.5, 1.1, 19.3806, -1.5, 1.1, 25.6806, -1.5, 1.1, 31.6806, -1.2, 1.1, 31.3806, -1.2, 1.1, 25.3806, -1.5, 1.1, 80.5806, -1.5, 1.1, 86.8806, -1.2, 1.1, 86.5806, -1.2, 1.1, 80.2806, -1.5, 1.1, 50.2806, -1.5, 1.1, 62.2806, -1.2, 1.1, 61.9806, -1.2, 1.1, 49.9806, -1.5, 1.1, 74.5806, -1.5, 1.1, 80.5806, -1.2, 1.1, 80.2806, -1.2, 1.1, 74.2806, -1.2, 1.1, 37.6806, -1.2, 1.1, 31.3806, -1.5, 1.1, 31.6806, -1.5, 1.1, 37.9806, -1.5, 1.1, 68.2806, -1.5, 1.1, 74.5806, -1.2, 1.1, 74.2806, -1.2, 1.1, 67.9806, -1.5, 1.1, 43.9806, -1.5, 1.1, 50.2806, -1.2, 1.1, 49.9806, -1.2, 1.1, 43.6806, -1.5, 1.1, 62.2806, -1.5, 1.1, 68.2806, -1.2, 1.1, 67.9806, -1.2, 1.1, 61.9806, -1.2, 1.1, 25.3806, -1.2, 1.1, 19.0806, -1.5, 1.1, 19.3806, -1.5, 1.1, 25.6806, 78.3, 2.3, 34.0806, 79.2, 2.3, 30.7806, 76.8, 2.3, 30.4806, 76.8, 2.3, 34.3806, 76.8, 2.3, 41.8806, 76.8, 2.3, 34.3806, 48.3, 2.3, 1.38059, 39, 1.1, 1.38059, 1.2, 1.1, 31.6806, 1.2, 1.1, 41.8806, 45.0968, 1.1, 41.8806, 47.5355, 2.1, 41.8806, 49.9742, 2.3, 41.8806, 45.2, 1.1, 1.38059, 47.7259, 2.3, 39.783, 45.9169, 1.1, 30.8065, 47.6989, 2.3, 30.7597, 45.9247, 1.1, 10.9703, 47.7189, 2.3, 12.7544, 45.8839, 1.1, 39.7698, 47.7001, 2.3, 3.75651, 45.9181, 1.1, 3.80333, 76.8, 2.3, 22.9806, 79.2, 2.3, 22.6806, 78.3, 2.3, 19.3806, 76.8, 2.3, 19.0806, 29.4, 1.1, 1.38059, 1.2, 1.1, 21.4806, 1.2, 1.1, 31.6806, 39, 1.1, 1.38059, 76.8, 2.3, 19.0806, 77.1, 2.3, 10.9806, 77.1, 2.3, 7.68059, 77.1, 2.3, 7.68059, 77.1, 2.3, 1.38059, 67.5, 2.3, 1.38059, 76.8, 2.3, 19.0806, 10.5, 1.1, 1.38059, 1.2, 1.1, 1.38059, 1.2, 1.1, 11.2806, 76.8, 2.3, 34.3806, 76.8, 2.3, 30.4806, 57.9, 2.3, 1.38059, 48.3, 2.3, 1.38059, 20.1, 1.1, 1.38059, 10.5, 1.1, 1.38059, 1.2, 1.1, 11.2806, 76.8, 2.3, 22.9806, 76.8, 2.3, 19.0806, 67.5, 2.3, 1.38059, 20.1, 1.1, 1.38059, 1.2, 1.1, 11.2806, 1.2, 1.1, 21.4806, 29.4, 1.1, 1.38059, 76.8, 2.3, 22.9806, 67.5, 2.3, 1.38059, 57.9, 2.3, 1.38059, 76.8, 2.3, 30.4806, 83.7, 8.9, 1.38059, 78.3, 8.9, 1.38059, 78, 8.9, 7.68059, 83.7, 8.9, 12.4806, 78.3, 8.9, 87.4806, 84, 8.9, 91.9806, 84, 8.9, 80.5806, 78.3, 8.9, 76.0806, 83.7, 8.9, 12.4806, 78, 8.9, 7.68059, 78.3, 8.9, 19.0806, 83.7, 8.9, 23.8806, 83.7, 8.9, 57.4806, 78.3, 8.9, 53.2806, 78.3, 8.9, 64.6806, 83.7, 8.9, 68.8806, 83.7, 8.9, 23.8806, 78.3, 8.9, 19.0806, 78.3, 8.9, 30.4806, 83.7, 8.9, 34.9806, 78.3, 8.9, 98.8806, 83.7, 8.9, 98.8806, 84, 8.9, 91.9806, 78.3, 8.9, 87.4806, 83.7, 8.9, 34.9806, 78.3, 8.9, 30.4806, 78.3, 8.9, 41.8806, 83.7, 8.9, 46.3806, 78.3, 8.9, 76.0806, 84, 8.9, 80.5806, 83.7, 8.9, 68.8806, 78.3, 8.9, 64.6806, 83.7, 8.9, 46.3806, 78.3, 8.9, 41.8806, 78.3, 8.9, 53.2806, 83.7, 8.9, 57.4806, 78.9, 2.3, 5.88059, 83.1, 2.3, 5.88059, 83.1, 2.3, 1.38059, 78.6, 2.3, 1.38059, 77.1, 2.3, 7.68059, 77.1, 2.3, 10.9806, 84.9, 2.3, 10.9806, 84.9, 2.3, 7.68059, 85.2, 2.3, 12.7806, 98.7, 2.3, 12.7806, 98.7, 2.3, 1.38059, 91.8, 2.3, 1.38059, 84.9, 2.3, 7.68059, 84.9, 2.3, 10.9806, 91.8, 2.3, 1.38059, 84.9, 2.3, 1.38059, 84.9, 2.3, 7.68059, 83.1, 2.3, 12.7806, 78.9, 2.3, 12.7806, 78.6, 2.3, 13.3806, 78.9, 2.3, 17.5806, 83.1, 2.3, 17.5806, 98.7, 2.3, 17.2806, 98.7, 2.3, 12.7806, 85.2, 2.3, 12.7806, 85.2, 2.3, 17.5806, 84.6, 2.3, 19.3806, 78.3, 2.3, 19.3806, 79.2, 2.3, 22.6806, 84.9, 2.3, 22.6806, 84.9, 2.3, 22.6806, 85.2, 2.3, 24.4806, 98.7, 2.3, 24.4806, 98.7, 2.3, 17.2806, 85.2, 2.3, 17.5806, 84.6, 2.3, 19.3806, 78.9, 2.3, 24.4806, 78.6, 2.3, 25.0806, 78.9, 2.3, 28.9806, 83.1, 2.3, 28.9806, 83.1, 2.3, 24.4806, 85.2, 2.3, 28.9806, 98.7, 2.3, 28.9806, 98.7, 2.3, 24.4806, 85.2, 2.3, 24.4806, 79.2, 2.3, 30.7806, 78.3, 2.3, 34.0806, 84.9, 2.3, 34.0806, 84.9, 2.3, 30.7806, 84.9, 2.3, 34.0806, 85.2, 2.3, 35.8806, 98.7, 2.3, 35.8806, 98.7, 2.3, 28.9806, 85.2, 2.3, 28.9806, 84.9, 2.3, 30.7806, 83.1, 2.3, 35.8806, 78.9, 2.3, 35.8806, 78.6, 2.3, 36.7806, 78.9, 2.3, 40.6806, 83.1, 2.3, 40.6806, 85.2, 2.3, 40.6806, 98.7, 2.3, 40.6806, 98.7, 2.3, 35.8806, 85.2, 2.3, 35.8806, 84.9, 2.3, 42.4806, 77.1, 2.3, 42.4806, 77.1, 2.3, 45.7806, 84.9, 2.3, 45.7806, 84.9, 2.3, 45.7806, 85.2, 2.3, 47.5806, 98.7, 2.3, 47.5806, 98.7, 2.3, 40.6806, 85.2, 2.3, 40.6806, 84.9, 2.3, 42.4806, 76.8, 2.3, 46.3806, 77.1, 2.3, 45.7806, 77.1, 2.3, 42.4806, 76.8, 2.3, 41.8806, 1.2, 1.1, 41.8806, 1.2, 1.1, 46.3806, 45.0968, 1.1, 46.3806, 47.5355, 2.1, 46.3806, 49.9742, 2.3, 46.3806, 49.9742, 2.3, 41.8806, 47.5355, 2.1, 41.8806, 45.0968, 1.1, 41.8806, 45.9184, 1.1, 43.367, 1.2, 1.1, 53.5806, 76.8, 2.3, 53.5806, 76.8, 2.3, 46.3806, 1.2, 1.1, 46.3806, 45.0968, 1.1, 53.5806, 47.5355, 2.1, 53.5806, 49.9742, 2.3, 53.5806, 49.9742, 2.3, 46.3806, 47.5355, 2.1, 46.3806, 45.0968, 1.1, 46.3806, 45.9184, 1.1, 48.767, 47.683, 2.3, 50.5808, 45.8835, 1.1, 52.3681, 83.1, 2.3, 47.5806, 78.9, 2.3, 47.5806, 78.6, 2.3, 48.1806, 78.9, 2.3, 52.3806, 83.1, 2.3, 52.3806, 98.7, 2.3, 52.0806, 98.7, 2.3, 47.5806, 85.2, 2.3, 47.5806, 85.2, 2.3, 52.3806, 84.6, 2.3, 54.1806, 78.3, 2.3, 54.1806, 79.2, 2.3, 57.4806, 84.9, 2.3, 57.4806, 84.9, 2.3, 57.4806, 85.2, 2.3, 59.2806, 98.7, 2.3, 59.2806, 98.7, 2.3, 52.0806, 85.2, 2.3, 52.3806, 84.6, 2.3, 54.1806, 77.1, 2.3, 57.4806, 79.2, 2.3, 57.4806, 78.3, 2.3, 54.1806, 77.1, 2.3, 54.1806, 76.8, 2.3, 58.0806, 77.1, 2.3, 57.4806, 77.1, 2.3, 54.1806, 76.8, 2.3, 53.5806, 1.2, 1.1, 53.5806, 1.2, 1.1, 58.0806, 45.0968, 1.1, 58.0806, 47.5355, 2.1, 58.0806, 49.9742, 2.3, 58.0806, 49.9742, 2.3, 53.5806, 47.5355, 2.1, 53.5806, 45.0968, 1.1, 53.5806, 45.9184, 1.1, 55.967, 78.3, 2.3, 68.8806, 79.2, 2.3, 65.5806, 76.8, 2.3, 65.2806, 76.8, 2.3, 69.1806, 48.3, 2.3, 98.8806, 57.9, 2.3, 98.8806, 76.8, 2.3, 88.6806, 76.8, 2.3, 92.5806, 79.2, 2.3, 92.2806, 78.3, 2.3, 88.9806, 76.8, 2.3, 88.6806, 39, 1.1, 98.8806, 76.8, 2.3, 69.1806, 76.8, 2.3, 65.2806, 48.1241, 2.3, 90.7703, 45.5172, 1.1, 93.0875, 46, 1.1, 93.3806, 47.4, 2.1, 92.2806, 48.8, 2.3, 91.1806, 67.5, 2.3, 98.8806, 77.1, 2.3, 98.8806, 76.8, 2.3, 92.5806, 76.8, 2.3, 88.6806, 77.1, 2.3, 80.5806, 77.1, 2.3, 77.2806, 76.8, 2.3, 69.1806, 39, 1.1, 98.8806, 48.3, 2.3, 98.8806, 48.8, 2.3, 91.1806, 47.4, 2.1, 92.2806, 46, 1.1, 93.3806, 45.2, 1.1, 98.8806, 45.8834, 1.1, 97.3563, 47.7254, 2.3, 97.3695, 1.2, 1.1, 88.6806, 1.2, 1.1, 98.8806, 10.5, 1.1, 98.8806, 67.5, 2.3, 98.8806, 76.8, 2.3, 92.5806, 76.8, 2.3, 88.6806, 57.9, 2.3, 98.8806, 1.2, 1.1, 78.4806, 20.1, 1.1, 98.8806, 29.4, 1.1, 98.8806, 1.2, 1.1, 68.2806, 1.2, 1.1, 88.6806, 10.5, 1.1, 98.8806, 20.1, 1.1, 98.8806, 1.2, 1.1, 78.4806, 1.2, 1.1, 68.2806, 29.4, 1.1, 98.8806, 39, 1.1, 98.8806, 76.8, 2.3, 65.2806, 76.8, 2.3, 58.0806, 1.2, 1.1, 58.0806, 45.5172, 1.1, 93.0875, 48.1241, 2.3, 90.7703, 49.9742, 2.3, 58.0806, 47.5355, 2.1, 58.0806, 45.0968, 1.1, 58.0806, 45.9198, 1.1, 90.2034, 47.7293, 2.3, 75.7893, 45.8873, 1.1, 75.7761, 45.9184, 1.1, 59.567, 47.7004, 2.3, 59.5802, 78.9, 2.3, 59.2806, 78.6, 2.3, 59.8806, 78.9, 2.3, 63.7806, 83.1, 2.3, 63.7806, 83.1, 2.3, 59.2806, 85.2, 2.3, 63.7806, 98.7, 2.3, 63.7806, 98.7, 2.3, 59.2806, 85.2, 2.3, 59.2806, 79.2, 2.3, 65.5806, 78.3, 2.3, 68.8806, 84.9, 2.3, 68.8806, 84.9, 2.3, 65.5806, 84.9, 2.3, 68.8806, 85.2, 2.3, 70.6806, 98.7, 2.3, 70.6806, 98.7, 2.3, 63.7806, 85.2, 2.3, 63.7806, 84.9, 2.3, 65.5806, 83.1, 2.3, 70.6806, 78.9, 2.3, 70.6806, 78.6, 2.3, 71.5806, 78.9, 2.3, 75.4806, 83.1, 2.3, 75.4806, 85.2, 2.3, 75.4806, 98.7, 2.3, 75.4806, 98.7, 2.3, 70.6806, 85.2, 2.3, 70.6806, 84.9, 2.3, 77.2806, 77.1, 2.3, 77.2806, 77.1, 2.3, 80.5806, 84.9, 2.3, 80.5806, 84.9, 2.3, 80.5806, 85.2, 2.3, 82.3806, 98.7, 2.3, 82.3806, 98.7, 2.3, 75.4806, 85.2, 2.3, 75.4806, 84.9, 2.3, 77.2806, 83.1, 2.3, 82.3806, 78.9, 2.3, 82.3806, 78.6, 2.3, 82.9806, 78.9, 2.3, 87.1806, 83.1, 2.3, 87.1806, 98.7, 2.3, 86.8806, 98.7, 2.3, 82.3806, 85.2, 2.3, 82.3806, 85.2, 2.3, 87.1806, 84.6, 2.3, 88.9806, 78.3, 2.3, 88.9806, 79.2, 2.3, 92.2806, 85.2, 2.3, 92.5806, 85.2, 2.3, 92.5806, 91.8, 2.3, 98.8806, 98.7, 2.3, 98.8806, 98.7, 2.3, 86.8806, 85.2, 2.3, 87.1806, 84.6, 2.3, 88.9806, 85.2, 2.3, 92.5806, 84.9, 2.3, 98.8806, 91.8, 2.3, 98.8806, 83.1, 2.3, 94.0806, 78.9, 2.3, 94.0806, 78.6, 2.3, 94.6806, 78.6, 2.3, 98.8806, 83.1, 2.3, 98.8806, 78.3, 8.9, 101.281, 78.3, 8.9, 104.281, 83.7, 8.9, 104.281, 83.7, 8.9, 101.281 )
+polygons = [ PoolIntArray( 3, 2, 0 ), PoolIntArray( 0, 2, 1 ), PoolIntArray( 6, 5, 4 ), PoolIntArray( 8, 7, 9 ), PoolIntArray( 9, 7, 10 ), PoolIntArray( 14, 13, 11 ), PoolIntArray( 11, 13, 12 ), PoolIntArray( 16, 15, 17 ), PoolIntArray( 17, 15, 18 ), PoolIntArray( 22, 21, 19 ), PoolIntArray( 19, 21, 20 ), PoolIntArray( 24, 23, 25 ), PoolIntArray( 25, 23, 26 ), PoolIntArray( 30, 29, 27 ), PoolIntArray( 27, 29, 28 ), PoolIntArray( 32, 31, 33 ), PoolIntArray( 37, 36, 34 ), PoolIntArray( 34, 36, 35 ), PoolIntArray( 41, 40, 38 ), PoolIntArray( 38, 40, 39 ), PoolIntArray( 45, 44, 42 ), PoolIntArray( 42, 44, 43 ), PoolIntArray( 47, 46, 48 ), PoolIntArray( 48, 46, 49 ), PoolIntArray( 53, 52, 50 ), PoolIntArray( 50, 52, 51 ), PoolIntArray( 57, 56, 54 ), PoolIntArray( 54, 56, 55 ), PoolIntArray( 61, 60, 58 ), PoolIntArray( 58, 60, 59 ), PoolIntArray( 65, 64, 62 ), PoolIntArray( 62, 64, 63 ), PoolIntArray( 69, 68, 66 ), PoolIntArray( 66, 68, 67 ), PoolIntArray( 73, 72, 70 ), PoolIntArray( 70, 72, 71 ), PoolIntArray( 77, 76, 74 ), PoolIntArray( 74, 76, 75 ), PoolIntArray( 81, 80, 78 ), PoolIntArray( 78, 80, 79 ), PoolIntArray( 85, 84, 82 ), PoolIntArray( 82, 84, 83 ), PoolIntArray( 89, 88, 86 ), PoolIntArray( 86, 88, 87 ), PoolIntArray( 93, 92, 90 ), PoolIntArray( 90, 92, 91 ), PoolIntArray( 97, 96, 94 ), PoolIntArray( 94, 96, 95 ), PoolIntArray( 101, 100, 98 ), PoolIntArray( 98, 100, 99 ), PoolIntArray( 105, 104, 102 ), PoolIntArray( 102, 104, 103 ), PoolIntArray( 109, 108, 106 ), PoolIntArray( 106, 108, 107 ), PoolIntArray( 113, 112, 110 ), PoolIntArray( 110, 112, 111 ), PoolIntArray( 117, 116, 114 ), PoolIntArray( 114, 116, 115 ), PoolIntArray( 121, 120, 118 ), PoolIntArray( 118, 120, 119 ), PoolIntArray( 125, 124, 122 ), PoolIntArray( 122, 124, 123 ), PoolIntArray( 129, 128, 126 ), PoolIntArray( 126, 128, 127 ), PoolIntArray( 133, 132, 130 ), PoolIntArray( 130, 132, 131 ), PoolIntArray( 136, 135, 134 ), PoolIntArray( 139, 138, 137 ), PoolIntArray( 143, 142, 140 ), PoolIntArray( 140, 142, 141 ), PoolIntArray( 147, 146, 144 ), PoolIntArray( 144, 146, 145 ), PoolIntArray( 151, 150, 148 ), PoolIntArray( 148, 150, 149 ), PoolIntArray( 153, 152, 154 ), PoolIntArray( 154, 152, 155 ), PoolIntArray( 159, 158, 156 ), PoolIntArray( 156, 158, 157 ), PoolIntArray( 161, 160, 162 ), PoolIntArray( 162, 160, 163 ), PoolIntArray( 167, 166, 164 ), PoolIntArray( 164, 166, 165 ), PoolIntArray( 171, 170, 168 ), PoolIntArray( 168, 170, 169 ), PoolIntArray( 175, 174, 172 ), PoolIntArray( 172, 174, 173 ), PoolIntArray( 179, 178, 176 ), PoolIntArray( 176, 178, 177 ), PoolIntArray( 183, 182, 180 ), PoolIntArray( 180, 182, 181 ), PoolIntArray( 185, 184, 186 ), PoolIntArray( 186, 184, 187 ), PoolIntArray( 188, 191, 189 ), PoolIntArray( 189, 191, 190 ), PoolIntArray( 196, 198, 197 ), PoolIntArray( 198, 207, 199 ), PoolIntArray( 199, 202, 200 ), PoolIntArray( 200, 193, 192 ), PoolIntArray( 193, 206, 194 ), PoolIntArray( 194, 209, 201 ), PoolIntArray( 201, 209, 195 ), PoolIntArray( 195, 205, 196 ), PoolIntArray( 196, 203, 198 ), PoolIntArray( 207, 202, 199 ), PoolIntArray( 198, 203, 207 ), PoolIntArray( 202, 204, 200 ), PoolIntArray( 200, 204, 193 ), PoolIntArray( 206, 208, 194 ), PoolIntArray( 193, 204, 206 ), PoolIntArray( 194, 208, 209 ), PoolIntArray( 209, 205, 195 ), PoolIntArray( 205, 203, 196 ), PoolIntArray( 207, 203, 202 ), PoolIntArray( 202, 203, 204 ), PoolIntArray( 206, 205, 208 ), PoolIntArray( 204, 203, 206 ), PoolIntArray( 208, 205, 209 ), PoolIntArray( 205, 206, 203 ), PoolIntArray( 212, 211, 213 ), PoolIntArray( 213, 211, 210 ), PoolIntArray( 215, 214, 216 ), PoolIntArray( 216, 214, 217 ), PoolIntArray( 220, 219, 218 ), PoolIntArray( 222, 221, 223 ), PoolIntArray( 223, 221, 224 ), PoolIntArray( 227, 226, 225 ), PoolIntArray( 229, 228, 230 ), PoolIntArray( 230, 228, 231 ), PoolIntArray( 234, 233, 232 ), PoolIntArray( 235, 237, 236 ), PoolIntArray( 239, 238, 240 ), PoolIntArray( 240, 238, 241 ), PoolIntArray( 242, 245, 243 ), PoolIntArray( 243, 245, 244 ), PoolIntArray( 247, 246, 248 ), PoolIntArray( 248, 246, 249 ), PoolIntArray( 253, 252, 250 ), PoolIntArray( 250, 252, 251 ), PoolIntArray( 257, 256, 254 ), PoolIntArray( 254, 256, 255 ), PoolIntArray( 259, 258, 260 ), PoolIntArray( 260, 258, 261 ), PoolIntArray( 265, 264, 262 ), PoolIntArray( 262, 264, 263 ), PoolIntArray( 267, 266, 268 ), PoolIntArray( 268, 266, 269 ), PoolIntArray( 273, 272, 270 ), PoolIntArray( 270, 272, 271 ), PoolIntArray( 277, 276, 274 ), PoolIntArray( 274, 276, 275 ), PoolIntArray( 281, 280, 278 ), PoolIntArray( 278, 280, 279 ), PoolIntArray( 283, 282, 284 ), PoolIntArray( 284, 282, 285 ), PoolIntArray( 289, 288, 286 ), PoolIntArray( 286, 288, 287 ), PoolIntArray( 295, 294, 290 ), PoolIntArray( 290, 294, 293 ), PoolIntArray( 290, 293, 292 ), PoolIntArray( 290, 292, 291 ), PoolIntArray( 298, 297, 296 ), PoolIntArray( 300, 299, 301 ), PoolIntArray( 301, 299, 302 ), PoolIntArray( 302, 299, 303 ), PoolIntArray( 305, 304, 306 ), PoolIntArray( 306, 304, 307 ), PoolIntArray( 311, 310, 308 ), PoolIntArray( 308, 310, 309 ), PoolIntArray( 312, 317, 313 ), PoolIntArray( 313, 317, 316 ), PoolIntArray( 313, 316, 314 ), PoolIntArray( 314, 316, 315 ), PoolIntArray( 319, 318, 320 ), PoolIntArray( 320, 318, 322 ), PoolIntArray( 320, 322, 321 ), PoolIntArray( 326, 325, 323 ), PoolIntArray( 323, 325, 324 ), PoolIntArray( 330, 329, 327 ), PoolIntArray( 327, 329, 328 ), PoolIntArray( 336, 335, 331 ), PoolIntArray( 331, 335, 332 ), PoolIntArray( 332, 335, 334 ), PoolIntArray( 332, 334, 333 ), PoolIntArray( 339, 338, 340 ), PoolIntArray( 340, 338, 337 ), PoolIntArray( 340, 337, 341 ), PoolIntArray( 345, 344, 342 ), PoolIntArray( 342, 344, 343 ), PoolIntArray( 349, 348, 346 ), PoolIntArray( 346, 348, 347 ), PoolIntArray( 355, 354, 350 ), PoolIntArray( 350, 354, 351 ), PoolIntArray( 351, 354, 353 ), PoolIntArray( 351, 353, 352 ), PoolIntArray( 360, 367, 361 ), PoolIntArray( 361, 367, 362 ), PoolIntArray( 362, 368, 363 ), PoolIntArray( 363, 366, 364 ), PoolIntArray( 364, 365, 356 ), PoolIntArray( 356, 359, 357 ), PoolIntArray( 357, 359, 358 ), PoolIntArray( 359, 356, 365 ), PoolIntArray( 365, 364, 366 ), PoolIntArray( 366, 368, 367 ), PoolIntArray( 367, 368, 362 ), PoolIntArray( 368, 366, 363 ), PoolIntArray( 378, 373, 372 ), PoolIntArray( 372, 373, 369 ), PoolIntArray( 373, 381, 374 ), PoolIntArray( 374, 380, 375 ), PoolIntArray( 375, 376, 370 ), PoolIntArray( 370, 376, 371 ), PoolIntArray( 376, 380, 377 ), PoolIntArray( 377, 379, 378 ), PoolIntArray( 378, 379, 373 ), PoolIntArray( 381, 380, 374 ), PoolIntArray( 373, 379, 381 ), PoolIntArray( 380, 376, 375 ), PoolIntArray( 380, 379, 377 ), PoolIntArray( 381, 379, 380 ), PoolIntArray( 383, 382, 384 ), PoolIntArray( 384, 382, 385 ), PoolIntArray( 385, 382, 386 ), PoolIntArray( 388, 387, 389 ), PoolIntArray( 389, 387, 390 ), PoolIntArray( 394, 393, 391 ), PoolIntArray( 391, 393, 392 ), PoolIntArray( 395, 400, 396 ), PoolIntArray( 396, 400, 399 ), PoolIntArray( 396, 399, 397 ), PoolIntArray( 397, 399, 398 ), PoolIntArray( 404, 403, 401 ), PoolIntArray( 401, 403, 402 ), PoolIntArray( 409, 416, 410 ), PoolIntArray( 410, 416, 411 ), PoolIntArray( 411, 417, 412 ), PoolIntArray( 412, 415, 413 ), PoolIntArray( 413, 414, 405 ), PoolIntArray( 405, 408, 406 ), PoolIntArray( 406, 408, 407 ), PoolIntArray( 408, 405, 414 ), PoolIntArray( 414, 413, 415 ), PoolIntArray( 415, 417, 416 ), PoolIntArray( 416, 417, 411 ), PoolIntArray( 417, 415, 412 ), PoolIntArray( 418, 421, 419 ), PoolIntArray( 419, 421, 420 ), PoolIntArray( 424, 423, 422 ), PoolIntArray( 427, 426, 428 ), PoolIntArray( 428, 426, 425 ), PoolIntArray( 429, 433, 434 ), PoolIntArray( 434, 433, 435 ), PoolIntArray( 435, 433, 432 ), PoolIntArray( 435, 432, 436 ), PoolIntArray( 436, 432, 430 ), PoolIntArray( 430, 432, 431 ), PoolIntArray( 439, 438, 437 ), PoolIntArray( 449, 450, 445 ), PoolIntArray( 445, 446, 440 ), PoolIntArray( 440, 446, 441 ), PoolIntArray( 441, 446, 442 ), PoolIntArray( 442, 446, 443 ), PoolIntArray( 446, 451, 447 ), PoolIntArray( 447, 451, 448 ), PoolIntArray( 448, 450, 444 ), PoolIntArray( 444, 450, 449 ), PoolIntArray( 450, 451, 445 ), PoolIntArray( 445, 451, 446 ), PoolIntArray( 451, 450, 448 ), PoolIntArray( 454, 453, 452 ), PoolIntArray( 456, 455, 457 ), PoolIntArray( 457, 455, 458 ), PoolIntArray( 460, 459, 461 ), PoolIntArray( 461, 459, 462 ), PoolIntArray( 464, 463, 465 ), PoolIntArray( 465, 463, 466 ), PoolIntArray( 477, 467, 472 ), PoolIntArray( 467, 480, 468 ), PoolIntArray( 468, 478, 469 ), PoolIntArray( 469, 478, 473 ), PoolIntArray( 473, 478, 474 ), PoolIntArray( 474, 479, 470 ), PoolIntArray( 470, 475, 471 ), PoolIntArray( 475, 482, 476 ), PoolIntArray( 476, 481, 477 ), PoolIntArray( 477, 480, 467 ), PoolIntArray( 480, 478, 468 ), PoolIntArray( 478, 479, 474 ), PoolIntArray( 479, 475, 470 ), PoolIntArray( 482, 481, 476 ), PoolIntArray( 475, 479, 482 ), PoolIntArray( 481, 480, 477 ), PoolIntArray( 480, 479, 478 ), PoolIntArray( 482, 480, 481 ), PoolIntArray( 479, 480, 482 ), PoolIntArray( 484, 483, 485 ), PoolIntArray( 485, 483, 487 ), PoolIntArray( 485, 487, 486 ), PoolIntArray( 491, 490, 488 ), PoolIntArray( 488, 490, 489 ), PoolIntArray( 495, 494, 492 ), PoolIntArray( 492, 494, 493 ), PoolIntArray( 496, 501, 497 ), PoolIntArray( 497, 501, 500 ), PoolIntArray( 497, 500, 499 ), PoolIntArray( 497, 499, 498 ), PoolIntArray( 504, 503, 505 ), PoolIntArray( 505, 503, 502 ), PoolIntArray( 505, 502, 506 ), PoolIntArray( 510, 509, 507 ), PoolIntArray( 507, 509, 508 ), PoolIntArray( 514, 513, 511 ), PoolIntArray( 511, 513, 512 ), PoolIntArray( 520, 519, 515 ), PoolIntArray( 515, 519, 516 ), PoolIntArray( 516, 519, 518 ), PoolIntArray( 516, 518, 517 ), PoolIntArray( 522, 521, 523 ), PoolIntArray( 523, 521, 524 ), PoolIntArray( 524, 521, 525 ), PoolIntArray( 527, 526, 528 ), PoolIntArray( 528, 526, 529 ), PoolIntArray( 533, 532, 530 ), PoolIntArray( 530, 532, 531 ), PoolIntArray( 539, 538, 534 ), PoolIntArray( 534, 538, 535 ), PoolIntArray( 535, 538, 536 ), PoolIntArray( 536, 538, 537 ), PoolIntArray( 540, 542, 541 ), PoolIntArray( 544, 543, 545 ), PoolIntArray( 545, 543, 546 ), PoolIntArray( 546, 543, 547 ), PoolIntArray( 551, 550, 548 ), PoolIntArray( 548, 550, 549 ) ]
+
 [node name="TestLevel" type="Spatial"]
-
-[node name="Geometry" type="Spatial" parent="."]
-
-[node name="Native" type="Spatial" parent="Geometry"]
-
-[node name="Bridge Back" type="Spatial" parent="Geometry/Native"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 81, 16, 50 )
-
-[node name="Catwalk_Bridge2" parent="Geometry/Native/Bridge Back" instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0100784, -10.0683, -40.7 )
-
-[node name="Catwalk" parent="Geometry/Native/Bridge Back" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0100784, -10.0657, -46.5139 )
-
-[node name="Catwalk10" parent="Geometry/Native/Bridge Back" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0100784, -10.0657, -52.3139 )
-
-[node name="Catwalk_Bridge3" parent="Geometry/Native/Bridge Back" instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0100784, -10.0683, -29.1 )
-
-[node name="Catwalk2" parent="Geometry/Native/Bridge Back" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0100784, -10.0657, -34.9139 )
-
-[node name="Catwalk_Bridge4" parent="Geometry/Native/Bridge Back" instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0100784, -10.0683, -17.5 )
-
-[node name="Catwalk3" parent="Geometry/Native/Bridge Back" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0100784, -10.0657, -23.3139 )
-
-[node name="Catwalk_Bridge5" parent="Geometry/Native/Bridge Back" instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0100784, -10.0683, -5.89999 )
-
-[node name="Catwalk4" parent="Geometry/Native/Bridge Back" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0100784, -10.0657, -11.7139 )
-
-[node name="Catwalk_Bridge6" parent="Geometry/Native/Bridge Back" instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0100784, -10.0683, 5.7 )
-
-[node name="Catwalk5" parent="Geometry/Native/Bridge Back" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0100784, -10.0657, -0.113892 )
-
-[node name="Catwalk_Bridge7" parent="Geometry/Native/Bridge Back" instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0100784, -10.0683, 17.3 )
-
-[node name="Catwalk6" parent="Geometry/Native/Bridge Back" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0100784, -10.0657, 11.4861 )
-
-[node name="Catwalk_Bridge8" parent="Geometry/Native/Bridge Back" instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0100784, -10.0683, 28.9 )
-
-[node name="Catwalk7" parent="Geometry/Native/Bridge Back" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0100784, -10.0657, 23.0861 )
-
-[node name="Catwalk_Bridge9" parent="Geometry/Native/Bridge Back" instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0100784, -10.0683, 40.5 )
-
-[node name="Catwalk8" parent="Geometry/Native/Bridge Back" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0100784, -10.0657, 34.6861 )
-
-[node name="Catwalk9" parent="Geometry/Native/Bridge Back" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0100784, -10.0657, 46.2861 )
-
-[node name="Catwalk11" parent="Geometry/Native/Bridge Back" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0100784, -10.0657, 52.0861 )
-
-[node name="Prototype room" type="Spatial" parent="Geometry/Native"]
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="PrototypeCube" parent="Geometry/Native/Prototype room" instance=ExtResource( 7 )]
-transform = Transform( 27.5, 0, 0, 0, 1, 0, 0, 0, 50, 48, 0, 0 )
-
-[node name="PrototypeCube4" parent="Geometry/Native/Prototype room" instance=ExtResource( 7 )]
-transform = Transform( -6.01032e-07, -0.5, 0, 27.5, -4.37114e-08, 0, 0, 0, 50, 100.5, 0, 0 )
-
-[node name="PrototypeCube5" parent="Geometry/Native/Prototype room" instance=ExtResource( 7 )]
-transform = Transform( 2.75855e-14, 2.29485e-08, -52.5, 27.5, -4.37114e-08, 0, -6.01032e-07, -0.5, -2.18557e-06, 100.5, 0, 0.5 )
-
-[node name="PrototypeCube6" parent="Geometry/Native/Prototype room" instance=ExtResource( 7 )]
-transform = Transform( 2.75855e-14, 2.29485e-08, -52.5, 27.5, -4.37114e-08, 0, -6.01032e-07, -0.5, -2.18557e-06, 100.5, 0, 100.5 )
-
-[node name="PrototypeCube7" parent="Geometry/Native/Prototype room" instance=ExtResource( 7 )]
-transform = Transform( 6.01032e-07, 0.5, 4.48042e-06, 27.5, -4.37114e-08, 0, 5.38574e-14, 4.48042e-08, -52.5, -0.500002, 0, 100.5 )
-
-[node name="PrototypeCube2" parent="Geometry/Native/Prototype room" instance=ExtResource( 7 )]
-transform = Transform( 25, 0, 0, 0, 1, 0, 0, 0, 50, -2, -1.3, 0 )
-
-[node name="PrototypeCube3" parent="Geometry/Native/Prototype room" instance=ExtResource( 7 )]
-transform = Transform( 2.16506, -0.5, 0, 1.25, 0.866025, 0, 0, 0, 50, 44.7, -2.3, 0 )
-
-[node name="CSG" type="Spatial" parent="Geometry"]
-visible = false
-
-[node name="Bridges" type="CSGCombiner" parent="Geometry/CSG"]
-visible = false
-use_in_baked_light = true
-use_collision = true
-
-[node name="Bridge Back" type="CSGCombiner" parent="Geometry/CSG/Bridges"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 81, 8, 50 )
-
-[node name="Pillar" type="CSGCombiner" parent="Geometry/CSG/Bridges/Bridge Back"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 30 )
-
-[node name="CSGBox" type="CSGBox" parent="Geometry/CSG/Bridges/Bridge Back/Pillar"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
-width = 8.0
-height = 14.0
-depth = 4.0
-material = ExtResource( 3 )
-
-[node name="CSGBox6" type="CSGBox" parent="Geometry/CSG/Bridges/Bridge Back/Pillar"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0 )
-width = 8.0
-depth = 14.0
-material = ExtResource( 3 )
-
-[node name="CSGBox7" type="CSGBox" parent="Geometry/CSG/Bridges/Bridge Back/Pillar"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0 )
-width = 8.0
-depth = 10.0
-material = ExtResource( 3 )
-
-[node name="CSGBox8" type="CSGBox" parent="Geometry/CSG/Bridges/Bridge Back/Pillar"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
-width = 8.0
-height = 4.0
-depth = 6.0
-material = ExtResource( 3 )
-
-[node name="CSGBox2" type="CSGBox" parent="Geometry/CSG/Bridges/Bridge Back/Pillar"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 2 )
-width = 1.0
-height = 12.0
-depth = 1.0
-material = ExtResource( 3 )
-
-[node name="CSGBox3" type="CSGBox" parent="Geometry/CSG/Bridges/Bridge Back/Pillar"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -2 )
-width = 1.0
-height = 12.0
-depth = 1.0
-material = ExtResource( 3 )
-
-[node name="CSGBox4" type="CSGBox" parent="Geometry/CSG/Bridges/Bridge Back/Pillar"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 2 )
-width = 1.0
-height = 12.0
-depth = 1.0
-material = ExtResource( 3 )
-
-[node name="CSGBox5" type="CSGBox" parent="Geometry/CSG/Bridges/Bridge Back/Pillar"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -2 )
-width = 1.0
-height = 12.0
-depth = 1.0
-material = ExtResource( 3 )
-
-[node name="Pillar5" type="CSGCombiner" parent="Geometry/CSG/Bridges/Bridge Back"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50.3255 )
-
-[node name="CSGBox" type="CSGBox" parent="Geometry/CSG/Bridges/Bridge Back/Pillar5"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
-width = 8.0
-height = 14.0
-depth = 4.0
-material = ExtResource( 3 )
-
-[node name="CSGBox6" type="CSGBox" parent="Geometry/CSG/Bridges/Bridge Back/Pillar5"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0 )
-width = 8.0
-depth = 14.0
-material = ExtResource( 3 )
-
-[node name="CSGBox7" type="CSGBox" parent="Geometry/CSG/Bridges/Bridge Back/Pillar5"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0 )
-width = 8.0
-depth = 10.0
-material = ExtResource( 3 )
-
-[node name="CSGBox8" type="CSGBox" parent="Geometry/CSG/Bridges/Bridge Back/Pillar5"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
-width = 8.0
-height = 4.0
-depth = 6.0
-material = ExtResource( 3 )
-
-[node name="CSGBox2" type="CSGBox" parent="Geometry/CSG/Bridges/Bridge Back/Pillar5"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 2 )
-width = 1.0
-height = 12.0
-depth = 1.0
-material = ExtResource( 3 )
-
-[node name="CSGBox3" type="CSGBox" parent="Geometry/CSG/Bridges/Bridge Back/Pillar5"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -2 )
-width = 1.0
-height = 12.0
-depth = 1.0
-material = ExtResource( 3 )
-
-[node name="CSGBox4" type="CSGBox" parent="Geometry/CSG/Bridges/Bridge Back/Pillar5"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 2 )
-width = 1.0
-height = 12.0
-depth = 1.0
-material = ExtResource( 3 )
-
-[node name="CSGBox5" type="CSGBox" parent="Geometry/CSG/Bridges/Bridge Back/Pillar5"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -2 )
-width = 1.0
-height = 12.0
-depth = 1.0
-material = ExtResource( 3 )
-
-[node name="Pillar2" type="CSGCombiner" parent="Geometry/CSG/Bridges/Bridge Back"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10 )
-
-[node name="CSGBox" type="CSGBox" parent="Geometry/CSG/Bridges/Bridge Back/Pillar2"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
-width = 8.0
-height = 14.0
-depth = 4.0
-material = ExtResource( 3 )
-
-[node name="CSGBox2" type="CSGBox" parent="Geometry/CSG/Bridges/Bridge Back/Pillar2"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 2 )
-width = 1.0
-height = 12.0
-depth = 1.0
-material = ExtResource( 3 )
-
-[node name="CSGBox3" type="CSGBox" parent="Geometry/CSG/Bridges/Bridge Back/Pillar2"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -2 )
-width = 1.0
-height = 12.0
-depth = 1.0
-material = ExtResource( 3 )
-
-[node name="CSGBox4" type="CSGBox" parent="Geometry/CSG/Bridges/Bridge Back/Pillar2"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 2 )
-width = 1.0
-height = 12.0
-depth = 1.0
-material = ExtResource( 3 )
-
-[node name="CSGBox5" type="CSGBox" parent="Geometry/CSG/Bridges/Bridge Back/Pillar2"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -2 )
-width = 1.0
-height = 12.0
-depth = 1.0
-material = ExtResource( 3 )
-
-[node name="CSGBox6" type="CSGBox" parent="Geometry/CSG/Bridges/Bridge Back/Pillar2"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0 )
-width = 8.0
-depth = 14.0
-material = ExtResource( 3 )
-
-[node name="CSGBox7" type="CSGBox" parent="Geometry/CSG/Bridges/Bridge Back/Pillar2"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0 )
-width = 8.0
-depth = 10.0
-material = ExtResource( 3 )
-
-[node name="CSGBox8" type="CSGBox" parent="Geometry/CSG/Bridges/Bridge Back/Pillar2"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
-width = 8.0
-height = 4.0
-depth = 6.0
-material = ExtResource( 3 )
-
-[node name="Pillar3" type="CSGCombiner" parent="Geometry/CSG/Bridges/Bridge Back"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10 )
-
-[node name="CSGBox" type="CSGBox" parent="Geometry/CSG/Bridges/Bridge Back/Pillar3"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
-width = 8.0
-height = 14.0
-depth = 4.0
-material = ExtResource( 3 )
-
-[node name="CSGBox2" type="CSGBox" parent="Geometry/CSG/Bridges/Bridge Back/Pillar3"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 2 )
-width = 1.0
-height = 12.0
-depth = 1.0
-material = ExtResource( 3 )
-
-[node name="CSGBox3" type="CSGBox" parent="Geometry/CSG/Bridges/Bridge Back/Pillar3"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -2 )
-width = 1.0
-height = 12.0
-depth = 1.0
-material = ExtResource( 3 )
-
-[node name="CSGBox4" type="CSGBox" parent="Geometry/CSG/Bridges/Bridge Back/Pillar3"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 2 )
-width = 1.0
-height = 12.0
-depth = 1.0
-material = ExtResource( 3 )
-
-[node name="CSGBox5" type="CSGBox" parent="Geometry/CSG/Bridges/Bridge Back/Pillar3"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -2 )
-width = 1.0
-height = 12.0
-depth = 1.0
-material = ExtResource( 3 )
-
-[node name="CSGBox6" type="CSGBox" parent="Geometry/CSG/Bridges/Bridge Back/Pillar3"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0 )
-width = 8.0
-depth = 14.0
-material = ExtResource( 3 )
-
-[node name="CSGBox7" type="CSGBox" parent="Geometry/CSG/Bridges/Bridge Back/Pillar3"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0 )
-width = 8.0
-depth = 10.0
-material = ExtResource( 3 )
-
-[node name="CSGBox8" type="CSGBox" parent="Geometry/CSG/Bridges/Bridge Back/Pillar3"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
-width = 8.0
-height = 4.0
-depth = 6.0
-material = ExtResource( 3 )
-
-[node name="Pillar4" type="CSGCombiner" parent="Geometry/CSG/Bridges/Bridge Back"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -30 )
-
-[node name="CSGBox" type="CSGBox" parent="Geometry/CSG/Bridges/Bridge Back/Pillar4"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
-width = 8.0
-height = 14.0
-depth = 4.0
-material = ExtResource( 3 )
-
-[node name="CSGBox2" type="CSGBox" parent="Geometry/CSG/Bridges/Bridge Back/Pillar4"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 2 )
-width = 1.0
-height = 12.0
-depth = 1.0
-material = ExtResource( 3 )
-
-[node name="CSGBox3" type="CSGBox" parent="Geometry/CSG/Bridges/Bridge Back/Pillar4"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -2 )
-width = 1.0
-height = 12.0
-depth = 1.0
-material = ExtResource( 3 )
-
-[node name="CSGBox4" type="CSGBox" parent="Geometry/CSG/Bridges/Bridge Back/Pillar4"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 2 )
-width = 1.0
-height = 12.0
-depth = 1.0
-material = ExtResource( 3 )
-
-[node name="CSGBox5" type="CSGBox" parent="Geometry/CSG/Bridges/Bridge Back/Pillar4"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -2 )
-width = 1.0
-height = 12.0
-depth = 1.0
-material = ExtResource( 3 )
-
-[node name="CSGBox6" type="CSGBox" parent="Geometry/CSG/Bridges/Bridge Back/Pillar4"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0 )
-width = 8.0
-depth = 14.0
-material = ExtResource( 3 )
-
-[node name="CSGBox7" type="CSGBox" parent="Geometry/CSG/Bridges/Bridge Back/Pillar4"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0 )
-width = 8.0
-depth = 10.0
-material = ExtResource( 3 )
-
-[node name="CSGBox8" type="CSGBox" parent="Geometry/CSG/Bridges/Bridge Back/Pillar4"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
-width = 8.0
-height = 4.0
-depth = 6.0
-material = ExtResource( 3 )
-
-[node name="Pillar6" type="CSGCombiner" parent="Geometry/CSG/Bridges/Bridge Back"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -50 )
-
-[node name="CSGBox" type="CSGBox" parent="Geometry/CSG/Bridges/Bridge Back/Pillar6"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
-width = 8.0
-height = 14.0
-depth = 4.0
-material = ExtResource( 3 )
-
-[node name="CSGBox2" type="CSGBox" parent="Geometry/CSG/Bridges/Bridge Back/Pillar6"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 2 )
-width = 1.0
-height = 12.0
-depth = 1.0
-material = ExtResource( 3 )
-
-[node name="CSGBox3" type="CSGBox" parent="Geometry/CSG/Bridges/Bridge Back/Pillar6"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -2 )
-width = 1.0
-height = 12.0
-depth = 1.0
-material = ExtResource( 3 )
-
-[node name="CSGBox4" type="CSGBox" parent="Geometry/CSG/Bridges/Bridge Back/Pillar6"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 2 )
-width = 1.0
-height = 12.0
-depth = 1.0
-material = ExtResource( 3 )
-
-[node name="CSGBox5" type="CSGBox" parent="Geometry/CSG/Bridges/Bridge Back/Pillar6"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -2 )
-width = 1.0
-height = 12.0
-depth = 1.0
-material = ExtResource( 3 )
-
-[node name="CSGBox6" type="CSGBox" parent="Geometry/CSG/Bridges/Bridge Back/Pillar6"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0 )
-width = 8.0
-depth = 14.0
-material = ExtResource( 3 )
-
-[node name="CSGBox7" type="CSGBox" parent="Geometry/CSG/Bridges/Bridge Back/Pillar6"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0 )
-width = 8.0
-depth = 10.0
-material = ExtResource( 3 )
-
-[node name="CSGBox8" type="CSGBox" parent="Geometry/CSG/Bridges/Bridge Back/Pillar6"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
-width = 8.0
-height = 4.0
-depth = 6.0
-material = ExtResource( 3 )
-
-[node name="Catwalk" type="CSGCombiner" parent="Geometry/CSG/Bridges/Bridge Back"]
-
-[node name="CSGBox" type="CSGBox" parent="Geometry/CSG/Bridges/Bridge Back/Catwalk"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0 )
-use_in_baked_light = true
-width = 10.0
-height = 1.0
-depth = 100.0
-
-[node name="Walls" type="CSGCombiner" parent="Geometry/CSG"]
-use_in_baked_light = true
-use_collision = true
-
-[node name="CSGBox" type="CSGBox" parent="Geometry/CSG/Walls"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 40, 50 )
-width = 100.0
-height = 80.0
-depth = 100.0
-material = ExtResource( 1 )
-
-[node name="CSGBox2" type="CSGBox" parent="Geometry/CSG/Walls"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 40, 50 )
-operation = 2
-width = 99.0
-height = 80.0
-depth = 99.0
-material = ExtResource( 1 )
-
-[node name="CSGBox3" type="CSGBox" parent="Geometry/CSG/Walls"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 90, 50 )
-operation = 2
-width = 136.0
-height = 80.0
-depth = 128.0
-
-[node name="Floor" type="CSGCombiner" parent="Geometry/CSG"]
-use_in_baked_light = true
-use_collision = true
-
-[node name="CSGBox" type="CSGBox" parent="Geometry/CSG/Floor"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 50 )
-width = 100.0
-height = 1.0
-depth = 100.0
-material = ExtResource( 1 )
-
-[node name="CSGBox2" type="CSGBox" parent="Geometry/CSG/Floor"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 74, 1, 50 )
-width = 52.0
-depth = 100.0
-material = ExtResource( 1 )
-
-[node name="CSGBox3" type="CSGBox" parent="Geometry/CSG/Floor"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 73, 1, 50 )
-visible = false
-width = 52.0
-height = 1.0
-depth = 100.0
-material = ExtResource( 1 )
-
-[node name="CSGBox4" type="CSGBox" parent="Geometry/CSG/Floor"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 72, 0, 50 )
-visible = false
-width = 52.0
-depth = 100.0
-material = ExtResource( 1 )
-
-[node name="CSGPolygon" type="CSGPolygon" parent="Geometry/CSG/Floor"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 47, 0.5, 100 )
-polygon = PoolVector2Array( -1.5, 0, -0.2, 0.8, 1, 1.5, 1, 0 )
-depth = 100.0
-material = ExtResource( 1 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 6.66667, 43 )
@@ -818,3 +308,564 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 54, 3, 24 )
 
 [node name="SPEED_UP12" parent="Speedups" instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 54, 3, 26 )
+
+[node name="Navigation" type="Navigation" parent="."]
+
+[node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="Navigation"]
+navmesh = SubResource( 3 )
+
+[node name="Geometry" type="Spatial" parent="Navigation/NavigationMeshInstance"]
+
+[node name="Native" type="Spatial" parent="Navigation/NavigationMeshInstance/Geometry"]
+
+[node name="Bridge Back" type="Spatial" parent="Navigation/NavigationMeshInstance/Geometry/Native"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 81, 16, 50 )
+
+[node name="Catwalk_Bridge2" parent="Navigation/NavigationMeshInstance/Geometry/Native/Bridge Back" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0100784, -10.0683, -40.7 )
+
+[node name="Catwalk" parent="Navigation/NavigationMeshInstance/Geometry/Native/Bridge Back" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0100784, -10.0657, -46.5139 )
+
+[node name="Catwalk10" parent="Navigation/NavigationMeshInstance/Geometry/Native/Bridge Back" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0100784, -10.0657, -52.3139 )
+
+[node name="Catwalk_Bridge3" parent="Navigation/NavigationMeshInstance/Geometry/Native/Bridge Back" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0100784, -10.0683, -29.1 )
+
+[node name="Catwalk2" parent="Navigation/NavigationMeshInstance/Geometry/Native/Bridge Back" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0100784, -10.0657, -34.9139 )
+
+[node name="Catwalk_Bridge4" parent="Navigation/NavigationMeshInstance/Geometry/Native/Bridge Back" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0100784, -10.0683, -17.5 )
+
+[node name="Catwalk3" parent="Navigation/NavigationMeshInstance/Geometry/Native/Bridge Back" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0100784, -10.0657, -23.3139 )
+
+[node name="Catwalk_Bridge5" parent="Navigation/NavigationMeshInstance/Geometry/Native/Bridge Back" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0100784, -10.0683, -5.89999 )
+
+[node name="Catwalk4" parent="Navigation/NavigationMeshInstance/Geometry/Native/Bridge Back" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0100784, -10.0657, -11.7139 )
+
+[node name="Catwalk_Bridge6" parent="Navigation/NavigationMeshInstance/Geometry/Native/Bridge Back" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0100784, -10.0683, 5.7 )
+
+[node name="Catwalk5" parent="Navigation/NavigationMeshInstance/Geometry/Native/Bridge Back" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0100784, -10.0657, -0.113892 )
+
+[node name="Catwalk_Bridge7" parent="Navigation/NavigationMeshInstance/Geometry/Native/Bridge Back" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0100784, -10.0683, 17.3 )
+
+[node name="Catwalk6" parent="Navigation/NavigationMeshInstance/Geometry/Native/Bridge Back" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0100784, -10.0657, 11.4861 )
+
+[node name="Catwalk_Bridge8" parent="Navigation/NavigationMeshInstance/Geometry/Native/Bridge Back" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0100784, -10.0683, 28.9 )
+
+[node name="Catwalk7" parent="Navigation/NavigationMeshInstance/Geometry/Native/Bridge Back" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0100784, -10.0657, 23.0861 )
+
+[node name="Catwalk_Bridge9" parent="Navigation/NavigationMeshInstance/Geometry/Native/Bridge Back" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0100784, -10.0683, 40.5 )
+
+[node name="Catwalk8" parent="Navigation/NavigationMeshInstance/Geometry/Native/Bridge Back" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0100784, -10.0657, 34.6861 )
+
+[node name="Catwalk9" parent="Navigation/NavigationMeshInstance/Geometry/Native/Bridge Back" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0100784, -10.0657, 46.2861 )
+
+[node name="Catwalk11" parent="Navigation/NavigationMeshInstance/Geometry/Native/Bridge Back" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0100784, -10.0657, 52.0861 )
+
+[node name="Prototype room" type="Spatial" parent="Navigation/NavigationMeshInstance/Geometry/Native"]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="PrototypeCube" parent="Navigation/NavigationMeshInstance/Geometry/Native/Prototype room" instance=ExtResource( 7 )]
+transform = Transform( 27.5, 0, 0, 0, 1, 0, 0, 0, 50, 48, 0, 0 )
+
+[node name="PrototypeCube4" parent="Navigation/NavigationMeshInstance/Geometry/Native/Prototype room" instance=ExtResource( 7 )]
+transform = Transform( -6.01032e-07, -0.5, 0, 27.5, -4.37114e-08, 0, 0, 0, 50, 100.5, 0, 0 )
+
+[node name="PrototypeCube5" parent="Navigation/NavigationMeshInstance/Geometry/Native/Prototype room" instance=ExtResource( 7 )]
+transform = Transform( 2.75855e-14, 2.29485e-08, -52.5, 27.5, -4.37114e-08, 0, -6.01032e-07, -0.5, -2.18557e-06, 100.5, 0, 0.5 )
+
+[node name="PrototypeCube6" parent="Navigation/NavigationMeshInstance/Geometry/Native/Prototype room" instance=ExtResource( 7 )]
+transform = Transform( 2.75855e-14, 2.29485e-08, -52.5, 27.5, -4.37114e-08, 0, -6.01032e-07, -0.5, -2.18557e-06, 100.5, 0, 100.5 )
+
+[node name="PrototypeCube7" parent="Navigation/NavigationMeshInstance/Geometry/Native/Prototype room" instance=ExtResource( 7 )]
+transform = Transform( 6.01032e-07, 0.5, 4.48042e-06, 27.5, -4.37114e-08, 0, 5.38574e-14, 4.48042e-08, -52.5, -0.500002, 0, 100.5 )
+
+[node name="PrototypeCube2" parent="Navigation/NavigationMeshInstance/Geometry/Native/Prototype room" instance=ExtResource( 7 )]
+transform = Transform( 25, 0, 0, 0, 1, 0, 0, 0, 50, -2, -1.3, 0 )
+
+[node name="PrototypeCube3" parent="Navigation/NavigationMeshInstance/Geometry/Native/Prototype room" instance=ExtResource( 7 )]
+transform = Transform( 2.16506, -0.5, 0, 1.25, 0.866025, 0, 0, 0, 50, 44.7, -2.3, 0 )
+
+[node name="CSG" type="Spatial" parent="Navigation/NavigationMeshInstance/Geometry"]
+visible = false
+
+[node name="Bridges" type="CSGCombiner" parent="Navigation/NavigationMeshInstance/Geometry/CSG"]
+visible = false
+use_in_baked_light = true
+use_collision = true
+
+[node name="Bridge Back" type="CSGCombiner" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Bridges"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 81, 8, 50 )
+
+[node name="Pillar" type="CSGCombiner" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Bridges/Bridge Back"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 30 )
+
+[node name="CSGBox" type="CSGBox" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Bridges/Bridge Back/Pillar"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
+width = 8.0
+height = 14.0
+depth = 4.0
+material = ExtResource( 3 )
+
+[node name="CSGBox6" type="CSGBox" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Bridges/Bridge Back/Pillar"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0 )
+width = 8.0
+depth = 14.0
+material = ExtResource( 3 )
+
+[node name="CSGBox7" type="CSGBox" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Bridges/Bridge Back/Pillar"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0 )
+width = 8.0
+depth = 10.0
+material = ExtResource( 3 )
+
+[node name="CSGBox8" type="CSGBox" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Bridges/Bridge Back/Pillar"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
+width = 8.0
+height = 4.0
+depth = 6.0
+material = ExtResource( 3 )
+
+[node name="CSGBox2" type="CSGBox" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Bridges/Bridge Back/Pillar"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 2 )
+width = 1.0
+height = 12.0
+depth = 1.0
+material = ExtResource( 3 )
+
+[node name="CSGBox3" type="CSGBox" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Bridges/Bridge Back/Pillar"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -2 )
+width = 1.0
+height = 12.0
+depth = 1.0
+material = ExtResource( 3 )
+
+[node name="CSGBox4" type="CSGBox" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Bridges/Bridge Back/Pillar"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 2 )
+width = 1.0
+height = 12.0
+depth = 1.0
+material = ExtResource( 3 )
+
+[node name="CSGBox5" type="CSGBox" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Bridges/Bridge Back/Pillar"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -2 )
+width = 1.0
+height = 12.0
+depth = 1.0
+material = ExtResource( 3 )
+
+[node name="Pillar5" type="CSGCombiner" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Bridges/Bridge Back"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50.3255 )
+
+[node name="CSGBox" type="CSGBox" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Bridges/Bridge Back/Pillar5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
+width = 8.0
+height = 14.0
+depth = 4.0
+material = ExtResource( 3 )
+
+[node name="CSGBox6" type="CSGBox" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Bridges/Bridge Back/Pillar5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0 )
+width = 8.0
+depth = 14.0
+material = ExtResource( 3 )
+
+[node name="CSGBox7" type="CSGBox" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Bridges/Bridge Back/Pillar5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0 )
+width = 8.0
+depth = 10.0
+material = ExtResource( 3 )
+
+[node name="CSGBox8" type="CSGBox" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Bridges/Bridge Back/Pillar5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
+width = 8.0
+height = 4.0
+depth = 6.0
+material = ExtResource( 3 )
+
+[node name="CSGBox2" type="CSGBox" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Bridges/Bridge Back/Pillar5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 2 )
+width = 1.0
+height = 12.0
+depth = 1.0
+material = ExtResource( 3 )
+
+[node name="CSGBox3" type="CSGBox" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Bridges/Bridge Back/Pillar5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -2 )
+width = 1.0
+height = 12.0
+depth = 1.0
+material = ExtResource( 3 )
+
+[node name="CSGBox4" type="CSGBox" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Bridges/Bridge Back/Pillar5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 2 )
+width = 1.0
+height = 12.0
+depth = 1.0
+material = ExtResource( 3 )
+
+[node name="CSGBox5" type="CSGBox" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Bridges/Bridge Back/Pillar5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -2 )
+width = 1.0
+height = 12.0
+depth = 1.0
+material = ExtResource( 3 )
+
+[node name="Pillar2" type="CSGCombiner" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Bridges/Bridge Back"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10 )
+
+[node name="CSGBox" type="CSGBox" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Bridges/Bridge Back/Pillar2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
+width = 8.0
+height = 14.0
+depth = 4.0
+material = ExtResource( 3 )
+
+[node name="CSGBox2" type="CSGBox" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Bridges/Bridge Back/Pillar2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 2 )
+width = 1.0
+height = 12.0
+depth = 1.0
+material = ExtResource( 3 )
+
+[node name="CSGBox3" type="CSGBox" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Bridges/Bridge Back/Pillar2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -2 )
+width = 1.0
+height = 12.0
+depth = 1.0
+material = ExtResource( 3 )
+
+[node name="CSGBox4" type="CSGBox" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Bridges/Bridge Back/Pillar2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 2 )
+width = 1.0
+height = 12.0
+depth = 1.0
+material = ExtResource( 3 )
+
+[node name="CSGBox5" type="CSGBox" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Bridges/Bridge Back/Pillar2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -2 )
+width = 1.0
+height = 12.0
+depth = 1.0
+material = ExtResource( 3 )
+
+[node name="CSGBox6" type="CSGBox" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Bridges/Bridge Back/Pillar2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0 )
+width = 8.0
+depth = 14.0
+material = ExtResource( 3 )
+
+[node name="CSGBox7" type="CSGBox" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Bridges/Bridge Back/Pillar2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0 )
+width = 8.0
+depth = 10.0
+material = ExtResource( 3 )
+
+[node name="CSGBox8" type="CSGBox" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Bridges/Bridge Back/Pillar2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
+width = 8.0
+height = 4.0
+depth = 6.0
+material = ExtResource( 3 )
+
+[node name="Pillar3" type="CSGCombiner" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Bridges/Bridge Back"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10 )
+
+[node name="CSGBox" type="CSGBox" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Bridges/Bridge Back/Pillar3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
+width = 8.0
+height = 14.0
+depth = 4.0
+material = ExtResource( 3 )
+
+[node name="CSGBox2" type="CSGBox" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Bridges/Bridge Back/Pillar3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 2 )
+width = 1.0
+height = 12.0
+depth = 1.0
+material = ExtResource( 3 )
+
+[node name="CSGBox3" type="CSGBox" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Bridges/Bridge Back/Pillar3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -2 )
+width = 1.0
+height = 12.0
+depth = 1.0
+material = ExtResource( 3 )
+
+[node name="CSGBox4" type="CSGBox" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Bridges/Bridge Back/Pillar3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 2 )
+width = 1.0
+height = 12.0
+depth = 1.0
+material = ExtResource( 3 )
+
+[node name="CSGBox5" type="CSGBox" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Bridges/Bridge Back/Pillar3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -2 )
+width = 1.0
+height = 12.0
+depth = 1.0
+material = ExtResource( 3 )
+
+[node name="CSGBox6" type="CSGBox" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Bridges/Bridge Back/Pillar3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0 )
+width = 8.0
+depth = 14.0
+material = ExtResource( 3 )
+
+[node name="CSGBox7" type="CSGBox" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Bridges/Bridge Back/Pillar3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0 )
+width = 8.0
+depth = 10.0
+material = ExtResource( 3 )
+
+[node name="CSGBox8" type="CSGBox" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Bridges/Bridge Back/Pillar3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
+width = 8.0
+height = 4.0
+depth = 6.0
+material = ExtResource( 3 )
+
+[node name="Pillar4" type="CSGCombiner" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Bridges/Bridge Back"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -30 )
+
+[node name="CSGBox" type="CSGBox" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Bridges/Bridge Back/Pillar4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
+width = 8.0
+height = 14.0
+depth = 4.0
+material = ExtResource( 3 )
+
+[node name="CSGBox2" type="CSGBox" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Bridges/Bridge Back/Pillar4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 2 )
+width = 1.0
+height = 12.0
+depth = 1.0
+material = ExtResource( 3 )
+
+[node name="CSGBox3" type="CSGBox" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Bridges/Bridge Back/Pillar4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -2 )
+width = 1.0
+height = 12.0
+depth = 1.0
+material = ExtResource( 3 )
+
+[node name="CSGBox4" type="CSGBox" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Bridges/Bridge Back/Pillar4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 2 )
+width = 1.0
+height = 12.0
+depth = 1.0
+material = ExtResource( 3 )
+
+[node name="CSGBox5" type="CSGBox" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Bridges/Bridge Back/Pillar4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -2 )
+width = 1.0
+height = 12.0
+depth = 1.0
+material = ExtResource( 3 )
+
+[node name="CSGBox6" type="CSGBox" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Bridges/Bridge Back/Pillar4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0 )
+width = 8.0
+depth = 14.0
+material = ExtResource( 3 )
+
+[node name="CSGBox7" type="CSGBox" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Bridges/Bridge Back/Pillar4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0 )
+width = 8.0
+depth = 10.0
+material = ExtResource( 3 )
+
+[node name="CSGBox8" type="CSGBox" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Bridges/Bridge Back/Pillar4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
+width = 8.0
+height = 4.0
+depth = 6.0
+material = ExtResource( 3 )
+
+[node name="Pillar6" type="CSGCombiner" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Bridges/Bridge Back"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -50 )
+
+[node name="CSGBox" type="CSGBox" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Bridges/Bridge Back/Pillar6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
+width = 8.0
+height = 14.0
+depth = 4.0
+material = ExtResource( 3 )
+
+[node name="CSGBox2" type="CSGBox" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Bridges/Bridge Back/Pillar6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 2 )
+width = 1.0
+height = 12.0
+depth = 1.0
+material = ExtResource( 3 )
+
+[node name="CSGBox3" type="CSGBox" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Bridges/Bridge Back/Pillar6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -2 )
+width = 1.0
+height = 12.0
+depth = 1.0
+material = ExtResource( 3 )
+
+[node name="CSGBox4" type="CSGBox" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Bridges/Bridge Back/Pillar6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 2 )
+width = 1.0
+height = 12.0
+depth = 1.0
+material = ExtResource( 3 )
+
+[node name="CSGBox5" type="CSGBox" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Bridges/Bridge Back/Pillar6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -2 )
+width = 1.0
+height = 12.0
+depth = 1.0
+material = ExtResource( 3 )
+
+[node name="CSGBox6" type="CSGBox" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Bridges/Bridge Back/Pillar6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0 )
+width = 8.0
+depth = 14.0
+material = ExtResource( 3 )
+
+[node name="CSGBox7" type="CSGBox" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Bridges/Bridge Back/Pillar6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0 )
+width = 8.0
+depth = 10.0
+material = ExtResource( 3 )
+
+[node name="CSGBox8" type="CSGBox" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Bridges/Bridge Back/Pillar6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
+width = 8.0
+height = 4.0
+depth = 6.0
+material = ExtResource( 3 )
+
+[node name="Catwalk" type="CSGCombiner" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Bridges/Bridge Back"]
+
+[node name="CSGBox" type="CSGBox" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Bridges/Bridge Back/Catwalk"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0 )
+use_in_baked_light = true
+width = 10.0
+height = 1.0
+depth = 100.0
+
+[node name="Walls" type="CSGCombiner" parent="Navigation/NavigationMeshInstance/Geometry/CSG"]
+use_in_baked_light = true
+use_collision = true
+
+[node name="CSGBox" type="CSGBox" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 40, 50 )
+width = 100.0
+height = 80.0
+depth = 100.0
+material = ExtResource( 1 )
+
+[node name="CSGBox2" type="CSGBox" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 40, 50 )
+operation = 2
+width = 99.0
+height = 80.0
+depth = 99.0
+material = ExtResource( 1 )
+
+[node name="CSGBox3" type="CSGBox" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 90, 50 )
+operation = 2
+width = 136.0
+height = 80.0
+depth = 128.0
+
+[node name="Floor" type="CSGCombiner" parent="Navigation/NavigationMeshInstance/Geometry/CSG"]
+use_in_baked_light = true
+use_collision = true
+
+[node name="CSGBox" type="CSGBox" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Floor"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 50 )
+width = 100.0
+height = 1.0
+depth = 100.0
+material = ExtResource( 1 )
+
+[node name="CSGBox2" type="CSGBox" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Floor"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 74, 1, 50 )
+width = 52.0
+depth = 100.0
+material = ExtResource( 1 )
+
+[node name="CSGBox3" type="CSGBox" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Floor"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 73, 1, 50 )
+visible = false
+width = 52.0
+height = 1.0
+depth = 100.0
+material = ExtResource( 1 )
+
+[node name="CSGBox4" type="CSGBox" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Floor"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 72, 0, 50 )
+visible = false
+width = 52.0
+depth = 100.0
+material = ExtResource( 1 )
+
+[node name="CSGPolygon" type="CSGPolygon" parent="Navigation/NavigationMeshInstance/Geometry/CSG/Floor"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 47, 0.5, 100 )
+polygon = PoolVector2Array( -1.5, 0, -0.2, 0.8, 1, 1.5, 1, 0 )
+depth = 100.0
+material = ExtResource( 1 )
+
+[node name="Enemy Controller" parent="." instance=ExtResource( 12 )]
+player_path = NodePath("../Player")
+nav_path = NodePath("../Navigation")
+
+[node name="enemy" parent="Enemy Controller" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 41.5046, 1.98788, 59.8468 )
+
+[node name="enemy2" parent="Enemy Controller" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 38.9943, 1.98788, 59.8468 )
+
+[node name="enemy9" parent="Enemy Controller" instance=ExtResource( 11 )]
+transform = Transform( -0.0111349, 0, 0.999938, 0, 1, 0, -0.999938, 0, -0.0111349, 81.3611, 10.7258, 58.5917 )
+
+[node name="enemy10" parent="Enemy Controller" instance=ExtResource( 11 )]
+transform = Transform( -0.0111349, 0, 0.999938, 0, 1, 0, -0.999938, 0, -0.0111349, 81.3891, 10.7258, 61.1019 )
+
+[node name="enemy11" parent="Enemy Controller" instance=ExtResource( 11 )]
+transform = Transform( -0.0111349, 0, 0.999938, 0, 1, 0, -0.999938, 0, -0.0111349, 87.2806, 3.72292, 77.5765 )
+
+[node name="enemy12" parent="Enemy Controller" instance=ExtResource( 11 )]
+transform = Transform( -0.0111349, 0, 0.999938, 0, 1, 0, -0.999938, 0, -0.0111349, 87.3086, 3.72292, 80.0867 )
+
+[node name="enemy3" parent="Enemy Controller" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 41.5046, 1.98788, 63.5471 )
+
+[node name="enemy4" parent="Enemy Controller" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 38.9943, 1.98788, 63.5471 )
+
+[node name="enemy5" parent="Enemy Controller" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 41.5046, 1.98788, 67.0599 )
+
+[node name="enemy6" parent="Enemy Controller" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 38.9943, 1.98788, 67.0599 )
+
+[node name="enemy7" parent="Enemy Controller" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 41.5046, 1.98788, 70.7602 )
+
+[node name="enemy8" parent="Enemy Controller" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 38.9943, 1.98788, 70.7602 )

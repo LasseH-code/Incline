@@ -29,7 +29,7 @@ namespace Incline.addons.PEWD.Bullet.New
             //this.RotateY(180);
         }
 
-        protected void impact(PhysicsBody body)
+        protected virtual void impact(PhysicsBody body)
         {
             if (body != null)
             {

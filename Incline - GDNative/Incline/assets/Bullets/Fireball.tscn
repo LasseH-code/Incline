@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://addons/PEWD/Bullet/New/PRBullet.cs" type="Script" id=1]
+[ext_resource path="res://assets/Bullets/Resources/FireballChris.tres" type="Resource" id=2]
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_color = Color( 1, 0, 0, 1 )
+
+[sub_resource type="SphereMesh" id=3]
+material = SubResource( 2 )
+radius = 0.5
+height = 1.0
+radial_segments = 8
+rings = 4
+
+[node name="Fireball" type="RayCast"]
+script = ExtResource( 1 )
+_res = ExtResource( 2 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+mesh = SubResource( 3 )
+material/0 = null

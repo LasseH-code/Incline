@@ -1,0 +1,126 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://scripts/entitys/enemys/AI-Test.gd" type="Script" id=1]
+[ext_resource path="res://assets/Guns/ChrisFireball.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/Bullets/Fireball.tscn" type="PackedScene" id=3]
+
+[sub_resource type="CapsuleShape" id=1]
+radius = 0.64
+
+[sub_resource type="CapsuleMesh" id=2]
+radius = 0.64
+
+[sub_resource type="SphereMesh" id=3]
+
+[sub_resource type="SpatialMaterial" id=4]
+albedo_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="CylinderMesh" id=7]
+top_radius = 0.567
+bottom_radius = 0.946
+height = 4.521
+
+[sub_resource type="SpatialMaterial" id=5]
+albedo_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="SphereShape" id=6]
+radius = 10.0
+
+[node name="enemy" type="KinematicBody"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource( 1 )
+speed = 10.0
+gun_path = NodePath("Spatial/ChrisFireball")
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+mesh = SubResource( 2 )
+material/0 = null
+__meta__ = {
+"apply_volumetrics": false
+}
+
+[node name="Eyes" type="Spatial" parent="."]
+
+[node name="TrackerRC" type="RayCast" parent="."]
+enabled = true
+cast_to = Vector3( 0, 0, -10 )
+
+[node name="Tracker" type="Spatial" parent="."]
+
+[node name="wow" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+enabled = true
+cast_to = Vector3( 0, 0, -10 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="."]
+transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.5, 1, -0.7 )
+mesh = SubResource( 3 )
+skeleton = NodePath("../Eyes")
+material/0 = SubResource( 4 )
+__meta__ = {
+"apply_volumetrics": false
+}
+
+[node name="MeshInstance" type="MeshInstance" parent="MeshInstance2"]
+transform = Transform( 0.780681, 0.520819, -0.345376, 0, 0.552664, 0.833404, 0.624929, -0.650623, 0.431455, -0.989976, -1.04663, 1.606 )
+mesh = SubResource( 7 )
+material/0 = null
+__meta__ = {
+"apply_volumetrics": false
+}
+
+[node name="MeshInstance3" type="MeshInstance" parent="."]
+transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.5, 1, -0.7 )
+mesh = SubResource( 3 )
+skeleton = NodePath("../Eyes")
+material/0 = SubResource( 5 )
+__meta__ = {
+"apply_volumetrics": false
+}
+
+[node name="MeshInstance" type="MeshInstance" parent="MeshInstance3"]
+transform = Transform( 0.919876, -0.326868, 0.21676, 0, 0.552664, 0.833404, -0.392209, -0.766628, 0.508383, 0.740613, -1.04663, 1.606 )
+mesh = SubResource( 7 )
+material/0 = null
+__meta__ = {
+"apply_volumetrics": false
+}
+
+[node name="Sightrange" type="Area" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape" type="CollisionShape" parent="Sightrange"]
+shape = SubResource( 6 )
+
+[node name="SightLeft" type="RayCast" parent="Sightrange"]
+enabled = true
+cast_to = Vector3( 0, 0, -10 )
+
+[node name="SightRight" type="RayCast" parent="Sightrange"]
+enabled = true
+cast_to = Vector3( 0, 0, -10 )
+
+[node name="Spatial" type="Spatial" parent="."]
+
+[node name="ChrisFireball" parent="Spatial" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+_do_ray_optimization = true
+_ray = NodePath("../../wow")
+_ref_frame = NodePath("../..")
+_bullet = ExtResource( 3 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="Timer2" type="Timer" parent="."]
+
+[connection signal="body_entered" from="Sightrange" to="." method="_on_Sightrange_body_entered"]
+[connection signal="body_exited" from="Sightrange" to="." method="_on_Sightrange_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="Timer2" to="." method="_on_Timer2_timeout"]
